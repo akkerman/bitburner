@@ -15,13 +15,15 @@ export async function main(ns) {
       hasRootAccess: ns.hasRootAccess(host),
       maxMoney: ns.getServerMaxMoney(host),
       hackChance: ns.hackAnalyzeChance(host),
+      hackLevel: ns.getServerRequiredHackingLevel(host),
+      hackTime: ns.getHackTime(host),
     }
 
     if (host.includes('worker')) {
       data.workers.push(server)
       return
     }
-    if (ns.getServerMoneyAvailable(host) > 0) {
+    if (ns.getServerMoneyAvailable(host) > 0 && host !== 'home') {
       data.targets.push(server)
       return
     }

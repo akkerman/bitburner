@@ -6,7 +6,8 @@ export async function main(ns) {
     const scriptTarget = ns.args[0]
 
     const maxServers = ns.getPurchasedServerLimit()
-    const maxRam = ns.getPurchasedServerMaxRam()
+    // const maxRam = ns.getPurchasedServerMaxRam()
+    const maxRam = 8192
 
     let ram = ns.serverExists('worker-1') ? ns.getServerMaxRam('worker-1') : 8
 

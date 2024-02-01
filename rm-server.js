@@ -2,10 +2,10 @@ import { scanner } from './scanner.js'
 /** @param {NS} ns */
 export async function main(ns) {
   scanner(ns, server => {
-    if (server === 'worker' || server === 'worker-0') {
+    if (server.includes('worker')) {
       ns.tprint(`stop processes ${server}`)
       ns.killall(server)
-      ns.deleteServer(server)
+      // ns.deleteServer(server)
     }
   })
 }
