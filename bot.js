@@ -5,16 +5,13 @@ export async function main(ns) {
   const target = ns.args[1]
   const maxThreads = ns.args.length === 3 ? ns.args[2] : Number.MAX_SAFE_INTEGER
 
-  const visited = new Set()
-  const queue = ['home']
-
   if (target !== 'local' && !ns.hasRootAccess(target)) {
     ns.print(`no root access on target ${target}`)
     ns.tprint(`no root access on target ${target}`)
     return
   }
 
-  scanner(ns, deploy, true)
+  scanner(ns, deploy, {rootAccess: true, hackLevel: true})
 
   function deploy(server) {
     if (server === 'home') { return }
@@ -28,7 +25,7 @@ export async function main(ns) {
 
     if (threads === 0) {
       ns.tprint(`server ${server} is at capacity`)
-      continue
+      return
     }
 
     const scriptTarget = target === 'local' ? server : target

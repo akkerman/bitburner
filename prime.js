@@ -10,8 +10,12 @@ export async function main(ns) {
     return
   }
 
+  if (ns.getHackingLevel() < ns.getServerRequiredHackingLevel(target)) {
+    ns.tprint('Hacking level too low')
+    return
+  }
+
   while (true) {
-    await ns.share()
     if (ns.getServerSecurityLevel(target) > securityThreshold) {
       await ns.weaken(target)
       continue
