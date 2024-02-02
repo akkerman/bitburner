@@ -1,19 +1,10 @@
 /** @param {NS} ns */
 export async function main(ns) {
   const target = ns.args[0]
+  const threads = ns.args[1]
 
   const securityThreshold = 5 + ns.getServerMinSecurityLevel(target)
   const moneyThreshold = 0.75 * ns.getServerMaxMoney(target)
-
-  if (ns.getServerMoneyAvailable(target) === 0) {
-    ns.tprint(`no money on server ${target}`)
-    return
-  }
-
-  if (ns.getHackingLevel() < ns.getServerRequiredHackingLevel(target)) {
-    ns.tprint('Hacking level too low')
-    return
-  }
 
   while (true) {
     if (ns.getServerSecurityLevel(target) > securityThreshold) {

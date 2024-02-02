@@ -2,21 +2,23 @@
 export async function main(ns) {
 
   async function main() {
-    const script = 'prime.js'
-    const scriptTarget = ns.args[0]
-
     const maxServers = ns.getPurchasedServerLimit()
-    // const maxRam = ns.getPurchasedServerMaxRam()
-    const maxRam = 8192
+    const maxRam = ns.getPurchasedServerMaxRam()
+    // const maxRam = 8192
 
-    let ram = ns.serverExists('worker-1') ? ns.getServerMaxRam('worker-1') : 8
+    // let ram = ns.serverExists('worker-1') ? ns.getServerMaxRam('worker-1') * 2 : 8
+    let ram = maxRam
 
-    while (ram < maxRam) {
+    while (ram <= maxRam) {
       for (let serverId = 1; serverId <= maxServers; serverId += 1) {
         const host = 'worker-' + serverId
         const created = await ensureServer(host, ram)
         if (created) {
-          deploy(host, ram, script, scriptTarget)
+          ns.exec('crack.js', 'home')
+          await ns.sleep(2000)
+          ns.exec('crawler.js', 'home')
+          await ns.sleep(2000)
+          ns.exec('manager.js', 'home')
         }
       }
       ram *= 2
@@ -52,19 +54,5 @@ export async function main(ns) {
 
     ns.purchaseServer(host, ram)
     return true
-  }
-
-  /**
-   * @param {string} host
-   * @param {number} ram
-   * @param {string} script
-   * @param {string} scriptTarget
-   */
-  function deploy(host, ram, script, scriptTarget) {
-    const threads = Math.floor(ram / ns.getScriptRam(script))
-
-    ns.scp(script, host)
-    ns.print(`starting ${threads} threads of ${script} at ${host} targeting ${scriptTarget}`)
-    ns.exec(script, host, threads, scriptTarget)
   }
 }
