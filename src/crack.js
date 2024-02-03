@@ -1,20 +1,24 @@
+/** @typedef {import('./NetscriptDefinitions').NS} NS */
 import { scanner } from './scanner.js'
 /** @param {NS} ns */
-export async function main(ns) {
+export async function main (ns) {
   scanner(ns, crack)
 
-  function crack(server) {
-    if (server === 'home') { return }
-    let open = 0
-    if (ns.fileExists('BruteSSH.exe')) { ns.brutessh(server); open += 1 }
-    if (ns.fileExists('FTPCrack.exe')) { ns.ftpcrack(server); open += 1 }
-    if (ns.fileExists('relaySMTP.exe')) { ns.relaysmtp(server); open += 1 }
-    if (ns.fileExists('HTTPWorm.exe')) { ns.httpworm(server); open += 1 }
-    if (ns.fileExists('SQLInject.exe')) { ns.sqlinject(server); open += 1}
+  function crack (host) {
+    if (host === 'home') { return }
+    if (ns.hasRootAccess(host)) return
 
-    if (ns.getServerNumPortsRequired(server) <= open) {
-      ns.tprint(`nuke ${server}`)
-      ns.nuke(server)
+    let open = 0
+    if (ns.fileExists('BruteSSH.exe')) { ns.brutessh(host); open += 1 }
+    if (ns.fileExists('FTPCrack.exe')) { ns.ftpcrack(host); open += 1 }
+    if (ns.fileExists('relaySMTP.exe')) { ns.relaysmtp(host); open += 1 }
+    if (ns.fileExists('HTTPWorm.exe')) { ns.httpworm(host); open += 1 }
+    if (ns.fileExists('SQLInject.exe')) { ns.sqlinject(host); open += 1 }
+
+    if (ns.getServerNumPortsRequired(host) <= open) {
+      ns.nuke(host)
+      ns.print(`Gained root access on ${host}`)
+      ns.tprint(`Gained root access on ${host}`)
     }
   }
 }
