@@ -1,3 +1,5 @@
+/** @typedef {import('./crawler.js').Data} Data */
+
 /** @param {NS} ns */
 export async function main(ns) {
   const script = 'hwg.js'
@@ -41,32 +43,3 @@ export async function main(ns) {
     ns.exec(script, worker, threads, JSON.stringify(params))
   }
 }
-
-/**
- * @typedef {{
- *   host: string               
- *   hasRootAccess: boolean
- *   maxMoney: number
- *   moneyHacked: number
- *   hackChance: number
- *   hackLevel: number
- *   hackTime: number
- *   memory: number
- *   minSecurity: number
- * }} Server
- * 
- * @typedef {{
- *   exported: number
- *   workers: Server[]
- *   targets: Server[]
- *   misc: Server[]
- * }} Data
- * 
- * @typedef {{
- *  target: string
- *  securityThreshold: number
- *  moneyThreshold: number
- *  hackThreads: number
- *  threads: number
- * }} Params
- */

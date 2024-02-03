@@ -4,10 +4,8 @@ export async function main(ns) {
   async function main() {
     const maxServers = ns.getPurchasedServerLimit()
     const maxRam = ns.getPurchasedServerMaxRam()
-    // const maxRam = 8192
 
-    // let ram = ns.serverExists('worker-1') ? ns.getServerMaxRam('worker-1') * 2 : 8
-    let ram = maxRam
+    let ram = ns.serverExists('worker-1') ? ns.getServerMaxRam('worker-1') * 2 : 8
 
     while (ram <= maxRam) {
       for (let serverId = 1; serverId <= maxServers; serverId += 1) {
