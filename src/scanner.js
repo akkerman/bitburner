@@ -1,4 +1,5 @@
-/** 
+/** @typedef {import('./NetscriptDefinitions').NS} NS */
+/**
  * @param {NS} ns
  * @param {(server:string)=>void} callback
  * @param {{
@@ -6,7 +7,7 @@
  *    hackLevel?: boolean
  * }} [options]
  */
-export function scanner(ns, callback, {rootAccess, hackLevel}={}) {
+export function scanner (ns, callback, { rootAccess, hackLevel } = {}) {
   const visited = new Set()
   const queue = ['home']
   let server

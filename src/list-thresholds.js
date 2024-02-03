@@ -1,5 +1,6 @@
+/** @typedef {import('./NetscriptDefinitions').NS} NS */
 /** @param {NS} ns */
-export async function main(ns) {
+export function main (ns) {
   const target = ns.args[0]
   const minSecurityLevel = ns.getServerMinSecurityLevel(target)
   const currentSecurityLevel = ns.getServerSecurityLevel(target)

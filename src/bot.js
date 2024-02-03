@@ -1,6 +1,7 @@
+/** @typedef {import('./NetscriptDefinitions').NS} NS */
 import { scanner } from './scanner.js'
 /** @param {NS} ns */
-export async function main(ns) {
+export function main (ns) {
   const script = ns.args[0]
   const target = ns.args[1]
   const maxThreads = ns.args.length === 3 ? ns.args[2] : Number.MAX_SAFE_INTEGER
@@ -11,11 +12,10 @@ export async function main(ns) {
     return
   }
 
-  scanner(ns, deploy, {rootAccess: true, hackLevel: true})
+  scanner(ns, deploy, { rootAccess: true, hackLevel: true })
 
-  function deploy(server) {
+  function deploy (server) {
     if (server === 'home') { return }
-
 
     if (target === 'local' && ns.getServerMoneyAvailable(server) === 0) {
       ns.tprint(`no money on server ${server}`)
@@ -35,6 +35,7 @@ export async function main(ns) {
     }
 
     const scriptTarget = target === 'local' ? server : target
+
     ns.tprint(`starting ${threads} threads of ${script} at ${server} targeting ${scriptTarget}`)
     ns.exec(script, server, threads, scriptTarget, threads)
   }

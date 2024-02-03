@@ -1,3 +1,4 @@
+/** @typedef {import('./NetscriptDefinitions').NS} NS */
 /**
  * @typedef {{
  *  target: string
@@ -8,10 +9,8 @@
  * }} Params
  */
 
-
 /** @param {NS} ns */
-export async function main(ns) {
-
+export async function main (ns) {
   /** @type {Params} */
   const p = JSON.parse(ns.args[0])
   const target = p.target
@@ -27,6 +26,6 @@ export async function main(ns) {
       continue
     }
 
-    await ns.hack(target, {threads: p.hackThreads})
+    await ns.hack(target, { threads: p.hackThreads })
   }
 }

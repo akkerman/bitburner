@@ -1,3 +1,4 @@
+---
 env:
   commonjs: true
   es2021: true
@@ -5,4 +6,20 @@ env:
 extends: standard
 parserOptions:
   ecmaVersion: latest
-rules: {}
+rules:
+  require-await:
+    - error
+  no-console:
+    - error
+  newline-after-var:
+    - error
+    - always
+  comma-dangle:
+    - error
+    - always-multiline
+  no-unused-vars:
+    - error
+    - vars: all
+      args: after-used
+      argsIgnorePattern: _
+      ignoreRestSiblings: true

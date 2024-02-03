@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "sync": "cd src; bitburner-filesync"
+    "sync": "cd src; bitburner-filesync",
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "",

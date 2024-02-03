@@ -1,7 +1,10 @@
-/** @typedef {import('./crawler.js').Data} Data */
+/**
+ * @typedef {import('./crawler.js').Data} Data
+ * @typedef {import('./NetscriptDefinitions').NS} NS
+ */
 
 /** @param {NS} ns */
-export async function main(ns) {
+export function main (ns) {
   const script = 'hwg.js'
 
   /** @type {Data} */
@@ -11,7 +14,6 @@ export async function main(ns) {
   const targets = servers.targets
     .filter(s => s.hasRootAccess && s.hackLevel < hackingLevel)
     .sort((a, b) => b.hackChance - a.hackChance)
-
 
   const max = Math.min(targets.length, servers.workers.length)
 

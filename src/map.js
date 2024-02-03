@@ -1,3 +1,4 @@
+/* eslint-disable */ // copied from external source
 /* Script based on: https://www.reddit.com/r/Bitburner/comments/rmpgn5/map_code/ by u/Ravery-net
 2022-02-03
 - Added Help menu

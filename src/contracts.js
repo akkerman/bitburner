@@ -1,11 +1,13 @@
+/** @typedef {import('./NetscriptDefinitions').NS} NS */
 /** @param {NS} ns */
-export async function main(ns) {
+export function main (ns) {
   const contracts = new Map()
   const visited = new Set()
   const queue = ['home']
 
   while (queue.length > 0) {
     const server = queue.shift()
+
     if (visited.has(server)) { continue }
     visited.add(server)
     find(server)
@@ -14,10 +16,10 @@ export async function main(ns) {
 
   ns.tprint(`Found ${contracts.size} contracts.`)
   for (const [server, cct] of contracts.entries()) {
-    ns.print (` - ${server}, ${cct}`)
+    ns.print(` - ${server}, ${cct}`)
   }
 
-  function find(server) {
+  function find (server) {
     const files = ns.ls(server)
     const cct = files.filter(f => f.includes('cct'))
 

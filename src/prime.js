@@ -1,8 +1,7 @@
+/** @typedef {import('./NetscriptDefinitions').NS} NS */
 /** @param {NS} ns */
-export async function main(ns) {
+export async function main (ns) {
   const target = ns.args[0]
-  const threads = ns.args[1]
-
   const securityThreshold = 5 + ns.getServerMinSecurityLevel(target)
   const moneyThreshold = 0.75 * ns.getServerMaxMoney(target)
 
