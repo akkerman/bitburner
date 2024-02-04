@@ -2,7 +2,9 @@
 /** @param {NS} ns */
 export function main (ns) {
   const start = ns.getHostname()
-  const end = ns.args[0]
+  const search = ns.args[0]
+
+  const rgx = new RegExp(search, 'ig')
 
   const visited = new Set()
   const queue = [{ server: start, path: [] }]
@@ -12,7 +14,7 @@ export function main (ns) {
   while ((node = queue.shift())) {
     const { server, path } = node
 
-    if (server === end) {
+    if (server.match(rgx)) {
       const p = path.concat([server]).join('; connect ')
       const idx = p.indexOf(';')
 
@@ -28,5 +30,5 @@ export function main (ns) {
       queue.push({ server: neigbour, path: newPath })
     }
   }
-  ns.tprint(`Server ${end} was not found`)
+  ns.tprint(`No server was found matching ${search}`)
 }
