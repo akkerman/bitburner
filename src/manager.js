@@ -122,6 +122,4 @@ export function main (ns) {
     ns.scp(script, target)
     ns.exec(script, target, threads, JSON.stringify(params))
   }
-
-  ns.print(ns.ps('home'))
 }
