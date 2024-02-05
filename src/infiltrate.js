@@ -1,7 +1,21 @@
 /* eslint-disable */ // copied from external source
+// from https://pastebin.com/raw/7DuFYDpJ
+// reddit post: https://www.reddit.com/r/Bitburner/comments/btea4k/comment/i9ljape/?utm_source=share&utm_medium=web2x&context=3
+// modifications by jason goemaat:
+// 1. add 'waitFrames' to main loop for transition from init -> play
+// 2. fix last 'nice' guard string from 'based' to 'straightforward'
+// 3. increase speed from 22 to 30
+// 4. Added --auto option, will repeat hacking the same company
+// 5. Added --faction option, will accept faction rep for #4 instead of money
+// TODO:
+// 1. Fix some that were failing with augments from Shadows of Anarchy
+
 const state = {
   // Name of the company that's infiltrated.
   company: '',
+
+  // A copy of company, used for auto-restart so it doesn't get reset at end
+  lastCompany: '',
 
   // Whether infiltration started. False means, we're
   // waiting to arrive on the infiltration screen.
@@ -12,8 +26,17 @@ const state = {
   game: {},
 }
 
+// automatically accept reward and re-run for the same company
+let auto = false
+
+// auto-accept reputation for faction instead of money
+let repFaction = ''
+
 // Speed of game actions, in milliseconds.
 const speed = 22
+
+// Time infiltration(s)
+let infiltrationStart = 0
 
 // Small hack to save RAM.
 // This will work smoothly, because the script does not use
@@ -94,22 +117,22 @@ const infiltrationGames = [
     },
   },
   {
-    name: 'slash when his guard is down',
+    name: 'attack when his guard is down',
     init: function (screen) {
       state.game.data = 'wait'
+      state.game.waitFrames = 45
     },
     play: function (screen) {
-      const data = getLines(getEl(screen, 'h4'))
+      const data = getLines(getEl(screen, 'h4')).join('\n')
 
-      if (state.game.data === 'attack') {
+      const compareString = 'ATTACKING!'
+      const compareString2 = 'Preparing?'
+      const shouldPress = data.indexOf(compareString) >= 0 || data.indexOf(compareString2) >= 0
+
+      wnd.lastSlashInfo = { data }
+      if (state.game.data === 'wait' && (data.indexOf(compareString) + data.indexOf(compareString2) > -2)) {
         pressKey(' ')
         state.game.data = 'done'
-      }
-
-      // Attack in next frame - instant attack sometimes
-      // ends in failure.
-      if (state.game.data === 'wait' && data.indexOf('ATTACKING!') !== -1) {
-        state.game.data = 'attack'
       }
     },
   },
@@ -138,7 +161,7 @@ const infiltrationGames = [
         'patient',
         'dynamic',
         'loyal',
-        'based',
+        'straightforward',
       ]
       const word = getLines(getEl(screen, 'h5'))[1]
 
@@ -428,7 +451,13 @@ export async function main (ns) {
     ['stop', false],
     ['status', false],
     ['quiet', false],
+    ['auto', false],
+    ['faction', ''],
   ])
+
+  auto = args.auto
+
+  repFaction = args.faction && args.faction && args.faction.length && args.faction
 
   function print (msg) {
     if (!args.quiet) {
@@ -455,8 +484,14 @@ export async function main (ns) {
     return
   }
 
+  auto = args.auto
+
+  repFaction = args.faction && args.faction && args.faction.length && args.faction
+
   print(
-    'Automated infiltration is enabled...\nVWhen you visit the infiltration screen of any company, all tasks are completed automatically.',
+    'Automated infiltration is enabled...\nWhen you visit the infiltration screen of any company, all tasks are completed automatically.\n' +
+    `Auto? ${auto}\n` +
+    `Faction or Money? ${repFaction || 'MONEY'}`,
   )
 
   endInfiltration()
@@ -470,8 +505,9 @@ export async function main (ns) {
 }
 
 /**
- * The infiltration loop, which is called at a rapid interval
- */
+
+The infiltration loop, which is called at a rapid interval
+*/
 function infLoop () {
   if (!state.started) {
     waitForStart()
@@ -479,11 +515,11 @@ function infLoop () {
     playGame()
   }
 }
-
 /**
- * Returns a list of DOM elements from the main game
- * container.
- */
+
+Returns a list of DOM elements from the main game
+container.
+*/
 function getEl (parent, selector) {
   let prefix = ':scope'
 
@@ -512,11 +548,11 @@ function getEl (parent, selector) {
 }
 
 /**
- * Returns the first element with matching text content.
- */
+
+Returns the first element with matching text content.
+*/
 function filterByText (elements, text) {
   text = text.toLowerCase()
-
   for (let i = 0; i < elements.length; i++) {
     const content = elements[i].textContent.toLowerCase()
 
@@ -529,33 +565,36 @@ function filterByText (elements, text) {
 }
 
 /**
- * Returns an array with the text-contents of the given elements.
- *
- * @param {NodeList} elements
- * @returns {string[]}
- */
+
+Returns an array with the text-contents of the given elements.
+@param {NodeList} elements
+@returns {string[]}
+*/
 function getLines (elements) {
   const lines = []
 
   elements.forEach((el) => lines.push(el.textContent))
-
   return lines
 }
 
+let postTimeout = null
+
 /**
- * Reset the state after infiltration is done.
- */
+
+Reset the state after infiltration is done.
+*/
 function endInfiltration () {
   unwrapEventListeners()
   state.company = ''
   state.started = false
+  // cancelMyTimeout()
+  // acceptMoney() // TODO: needed?
 }
-
 /**
- * Simulate a keyboard event (keydown + keyup).
- *
- * @param {string|int} keyOrCode A single letter (string) or key-code to send.
- */
+
+Simulate a keyboard event (keydown + keyup).
+@param {string|int} keyOrCode A single letter (string) or key-code to send.
+*/
 function pressKey (keyOrCode) {
   let keyCode = 0
   let key = ''
@@ -585,16 +624,15 @@ function pressKey (keyOrCode) {
 }
 
 /**
- * Infiltration monitor to start automatic infiltration.
- *
- * This function runs asynchronously, after the "main" function ended,
- * so we cannot use any "ns" function here!
- */
+
+Infiltration monitor to start automatic infiltration.
+This function runs asynchronously, after the "main" function ended,
+so we cannot use any "ns" function here!
+*/
 function waitForStart () {
   if (state.started) {
     return
   }
-
   const h4 = getEl('h4')
 
   if (!h4.length) {
@@ -613,6 +651,7 @@ function waitForStart () {
   }
 
   state.company = title.substr(13)
+  state.lastCompany = title.substr(13)
   state.started = true
   wrapEventListeners()
 
@@ -621,16 +660,24 @@ function waitForStart () {
 }
 
 /**
- * Identify the current infiltration game.
- */
+
+Identify the current infiltration game.
+*/
 function playGame () {
   const screens = doc.querySelectorAll('.MuiContainer-root')
 
+  wnd.info = { screens }
   if (!screens.length) {
+    wnd.info = { screens, messge: 'no screens.length, calling endInfiltration()' }
     endInfiltration()
+    selectCompany()
     return
   }
   if (screens[0].children.length < 3) {
+    wnd.info = { screens, message: 'screens.children.length < 3, calling endInfiltration()' }
+    if (!postTimeout && screens[0].children[1].children[0].innerText === 'Infiltration successful!') {
+      acceptMoney('spam') // I think this is spamming, yes, need to check for infiltration complete, but where
+    }
     return
   }
 
@@ -638,42 +685,63 @@ function playGame () {
   const h4 = getEl(screen, 'h4')
 
   if (!h4.length) {
+    wnd.info = { screens, message: 'no h4.length, calling endInfiltration()' }
     endInfiltration()
     return
   }
+
+  cancelMyTimeout()
 
   const title = h4[0].textContent.trim().toLowerCase().split(/[!.(]/)[0]
 
+  wnd.info = { screens, message: 'searching for something', title }
+
   if (title === 'infiltration successful') {
+    // NOTE: I get screens.length < 3 on success, not this...
+    wnd.info = { screens, message: 'infiltration successful!' }
     endInfiltration()
     return
+  } else {
+    wnd.last_title = title
   }
 
   if (title === 'get ready') {
+    if (!infiltrationStart) infiltrationStart = new Date().valueOf()
     return
   }
 
   const game = infiltrationGames.find((game) => game.name === title)
 
+  wnd.STATE = { game, screen, h4, title }
+
   if (game) {
+    if (!infiltrationStart) infiltrationStart = new Date().valueOf()
     if (state.game.current !== title) {
       state.game.current = title
       game.init(screen)
+      game.waitFrames = Math.max(game.waitFrames || 0, 15)
+    } else {
+      if (game.waitFrames > 0) {
+        game.waitFrames--
+      } else {
+        game.play(screen)
+      }
     }
-
-    game.play(screen)
   } else {
     console.error('Unknown game:', title)
   }
 }
 
 /**
- * Wrap all event listeners with a custom function that injects
- * the "isTrusted" flag.
- *
- * Is this cheating? Or is it real hacking? Don't care, as long
- * as it's working :)
- */
+
+Wrap all event listeners with a custom function that injects
+
+the "isTrusted" flag.
+
+Is this cheating? Or is it real hacking? Don't care, as long
+
+as it's working :)
+*/
 function wrapEventListeners () {
   if (!doc._addEventListener) {
     doc._addEventListener = doc.addEventListener
@@ -753,7 +821,7 @@ function wrapEventListeners () {
       for (let i = 0; i < this.eventListeners[type].length; i++) {
         if (
           this.eventListeners[type][i].listener === callback &&
-					this.eventListeners[type][i].useCapture === options
+          this.eventListeners[type][i].useCapture === options
         ) {
           if (this.eventListeners[type][i].wrapped) {
             callback = this.eventListeners[type][i].wrapped
@@ -774,8 +842,8 @@ function wrapEventListeners () {
 }
 
 /**
- * Revert the "wrapEventListeners" changes.
- */
+Revert the "wrapEventListeners" changes.
+*/
 function unwrapEventListeners () {
   if (doc._addEventListener) {
     doc.addEventListener = doc._addEventListener
@@ -786,4 +854,105 @@ function unwrapEventListeners () {
     delete doc._removeEventListener
   }
   delete doc.eventListeners
+}
+/* ================================================================================
+  = Auto Mode
+  ================================================================================ */
+
+/**
+
+Select a company and begin infiltration for auto mode
+*/
+function selectCompany () {
+  if (!auto) return
+  cancelMyTimeout()
+  postTimeout = setTimeout(() => {
+    postTimeout = null
+
+    const selector = 'span[aria-label="' + state.lastCompany + '"]'
+    const companyEle = doc.querySelector(selector)
+
+    if (companyEle) {
+      if (infiltrationStart) {
+        console.info(`FAILED INFILTRATION - ${((new Date().valueOf() - infiltrationStart) / 1000).toFixed(1)} sec, last was ${last_title}`)
+        infiltrationStart = 0
+      }
+      companyEle.click()
+      postTimeout = setTimeout(() => {
+        postTimeout = null
+        const btn = Array.from(doc.querySelectorAll('button')).find(x => x.innerText.indexOf('Infiltrate Company') >= 0)
+
+        if (btn) btn[Object.keys(btn)[1]].onClick({ isTrusted: true })
+      }, 1000)
+    }
+  }, 1000)
+}
+
+// accept money bonus, hand off to acceptReputation() if repFaction is set
+function acceptMoney (msg) {
+  if (!auto) return
+  if (postTimeout) return
+
+  // console.log('acceptMoney:', msg)
+  cancelMyTimeout()
+
+  if (repFaction && repFaction.length) {
+    acceptReputation()
+    return
+  }
+
+  postTimeout = setTimeout(() => {
+    // console.log('acceptMoney()', msg)
+    cancelMyTimeout()
+    const btn = Array.from(doc.querySelectorAll('button')).find(x => x.innerText.indexOf('Sell for') >= 0)
+
+    if (btn) {
+      if (infiltrationStart) {
+        console.info(`SUCCESSFUL INFILTRATION - ${((new Date().valueOf() - infiltrationStart) / 1000).toFixed(1)} sec: ${btn.innerText}`)
+        infiltrationStart = 0
+      }
+      btn[Object.keys(btn)[1]].onClick({ isTrusted: true })
+    } else {
+      console.log(`Failure!  ${ms}`)
+    }
+    selectCompany()
+  }, 500)
+}
+
+// accept reputation bonus
+function acceptReputation () {
+  cancelMyTimeout()
+
+  postTimeout = setTimeout(() => {
+    postTimeout = null
+
+    const e = Array.from(doc.querySelectorAll('[role="button"]')).find(x => x.innerText.indexOf('none') >= 0)
+
+    if (e) {
+      e[Object.keys(e)[1]].onKeyDown(new KeyboardEvent('keydown', { key: ' ' }))
+      postTimeout = setTimeout(() => {
+        const e2 = Array.from(doc.querySelectorAll('li[role="option"]')).find(x => x.innerText.indexOf(repFaction) >= 0)
+
+        e2.click()
+        postTimeout = setTimeout(() => {
+          const btn = Array.from(doc.querySelectorAll('button')).find(x => x.innerText.indexOf('Trade for') >= 0)
+
+          if (btn) {
+            btn[Object.keys(btn)[1]].onClick({ isTrusted: true })
+            if (infiltrationStart) {
+              console.info(`SUCCESSFUL INFILTRATION - ${((new Date().valueOf() - infiltrationStart) / 1000).toFixed(1)} sec - ${btn.innerText}`)
+              infiltrationStart = 0
+            }
+          }
+        })
+      }, 500)
+    }
+  }, 1000)
+}
+
+function cancelMyTimeout () {
+  if (postTimeout) {
+    clearTimeout(postTimeout)
+    postTimeout = null
+  }
 }
