@@ -1,29 +1,29 @@
-{"name":"CyberSec","requirements":"Install a backdoor on the CSEC server","type":"Early Game Factions","backdoor":"CSEC"}
 {"name":"Tian Di Hui","requirements":"$1m\nHacking Level 50\nBe in Chongqing, New Tokyo, or Ishima","type":"Early Game Factions"}
-{"name":"Netburners","requirements":"Hacking Level 80\nTotal Hacknet Levels of 100\nTotal Hacknet RAM of 8\nTotal Hacknet Cores of 4","type":"Early Game Factions"}
-{"name":"Shadows of Anarchy","requirements":"Successfully infiltrate a company","type":"Early Game Factions"}
-{"name":"Sector-12","requirements":"Be in Sector-12\n$15m","type":"City Factions","prevent":["Chongqing","New Tokyo","Ishima","Volhaven"]}
-{"name":"Chongqing","requirements":"Be in Chongqing\n$20m","type":"City Factions","prevent":["Sector-12","Aevum","Volhaven"]}
-{"name":"New Tokyo","requirements":"Be in New Tokyo\n$20m","type":"City Factions","prevent":["Sector-12","Aevum","Volhaven"]}
-{"name":"Ishima","requirements":"Be in Ishima\n$30m","type":"City Factions","prevent":["Sector-12","Aevum","Volhaven"]}
-{"name":"Aevum","requirements":"Be in Aevum\n$40m","type":"City Factions","prevent":["Chongqing","New Tokyo","Ishima","Volhaven"]}
 {"name":"Volhaven","requirements":"Be in Volhaven\n$50m","type":"City Factions","prevent":["Sector-12","Aevum","Chongqing","New Tokyo","Ishima"]}
-{"name":"NiteSec","requirements":"Install a backdoor on the avmnite-02h server","type":"Hacking Groups","backdoor":"avmnite-02h"}
+{"name":"Sector-12","requirements":"Be in Sector-12\n$15m","type":"City Factions","prevent":["Chongqing","New Tokyo","Ishima","Volhaven"]}
+{"name":"CyberSec","requirements":"Install a backdoor on the CSEC server","type":"Early Game Factions","backdoor":"CSEC"}
 {"name":"The Black Hand","requirements":"Install a backdoor on the I.I.I.I server","type":"Hacking Groups","backdoor":"I.I.I.I"}
+{"name":"NiteSec","requirements":"Install a backdoor on the avmnite-02h server","type":"Hacking Groups","backdoor":"avmnite-02h"}
 {"name":"BitRunners","requirements":"Install a backdoor on the run4theh111z server","type":"Hacking Groups","backdoor":"run4theh111z"}
-{"name":"ECorp","requirements":"Have 400k reputation with the Corporation","type":"Megacorporations"}
-{"name":"MegaCorp","requirements":"Have 400k reputation with the Corporation","type":"Megacorporations"}
-{"name":"KuaiGong International","requirements":"Have 400k reputation with the Corporation","type":"Megacorporations"}
-{"name":"Four Sigma","requirements":"Have 400k reputation with the Corporation","type":"Megacorporations"}
-{"name":"NWO","requirements":"Have 400k reputation with the Corporation","type":"Megacorporations"}
-{"name":"Blade Industries","requirements":"Have 400k reputation with the Corporation","type":"Megacorporations"}
-{"name":"OmniTek Incorporated","requirements":"Have 400k reputation with the Corporation","type":"Megacorporations"}
-{"name":"Bachman & Associates","requirements":"Have 400k reputation with the Corporation","type":"Megacorporations"}
-{"name":"Clarke Incorporated","requirements":"Have 400k reputation with the Corporation","type":"Megacorporations"}
-{"name":"Fulcrum Secret Technologies","requirements":"Have 400k reputation with the Corporation\nInstall a backdoor on the fulcrumassets server","type":"Megacorporations","backdoor":"fulcrumassets"}
-{"name":"Slum Snakes","requirements":"All Combat Stats of 30\n-9 Karma\n$1m","type":"Criminal Organizations"}
-{"name":"Tetrads","requirements":"Be in Chongqing, New Tokyo, or Ishima\nAll Combat Stats of 75\n-18 Karma","type":"Criminal Organizations"}
-{"name":"Silhouette","requirements":"CTO, CFO, or CEO of a company\n$15m\n-22 Karma","type":"Criminal Organizations"}
-{"name":"Speakers for the Dead","requirements":"Hacking Level 100\nAll Combat Stats of 300\n30 People Killed\n-45 Karma\nNot working for CIA or NSA","type":"Criminal Organizations"}
 {"name":"The Dark Army","requirements":"Hacking Level 300\nAll Combat Stats of 300\nBe in Chongqing\n5 People Killed\n-45 Karma\nNot working for CIA or NSA","type":"Criminal Organizations"}
+{"name":"ECorp","requirements":"Have 400k reputation with the Corporation","type":"Megacorporations"}
 {"name":"The Syndicate","requirements":"Hacking Level 200\nAll Combat Stats of 200\nBe in Aevum or Sector-12\n$10m\n-90 Karma\nNot working for CIA or NSA","type":"Criminal Organizations"}
+{"name":"Aevum","requirements":"Be in Aevum\n$40m","type":"City Factions","prevent":["Chongqing","New Tokyo","Ishima","Volhaven"]}
+{"name":"Four Sigma","requirements":"Have 400k reputation with the Corporation","type":"Megacorporations"}
+{"name":"New Tokyo","requirements":"Be in New Tokyo\n$20m","type":"City Factions","prevent":["Sector-12","Aevum","Volhaven"]}
+{"name":"Silhouette","requirements":"CTO, CFO, or CEO of a company\n$15m\n-22 Karma","type":"Criminal Organizations"}
+{"name":"KuaiGong International","requirements":"Have 400k reputation with the Corporation","type":"Megacorporations"}
+{"name":"Ishima","requirements":"Be in Ishima\n$30m","type":"City Factions","prevent":["Sector-12","Aevum","Volhaven"]}
+{"name":"Chongqing","requirements":"Be in Chongqing\n$20m","type":"City Factions","prevent":["Sector-12","Aevum","Volhaven"]}
+{"name":"Fulcrum Secret Technologies","requirements":"Have 400k reputation with the Corporation\nInstall a backdoor on the fulcrumassets server","type":"Megacorporations","backdoor":"fulcrumassets"}
+{"name":"Shadows of Anarchy","requirements":"Successfully infiltrate a company","type":"Early Game Factions"}
+{"name":"NWO","requirements":"Have 400k reputation with the Corporation","type":"Megacorporations"}
+{"name":"Bachman & Associates","requirements":"Have 400k reputation with the Corporation","type":"Megacorporations"}
+{"name":"Netburners","requirements":"Hacking Level 80\nTotal Hacknet Levels of 100\nTotal Hacknet RAM of 8\nTotal Hacknet Cores of 4","type":"Early Game Factions"}
+{"name":"OmniTek Incorporated","requirements":"Have 400k reputation with the Corporation","type":"Megacorporations"}
+{"name":"Slum Snakes","requirements":"All Combat Stats of 30\n-9 Karma\n$1m","type":"Criminal Organizations"}
+{"name":"Speakers for the Dead","requirements":"Hacking Level 100\nAll Combat Stats of 300\n30 People Killed\n-45 Karma\nNot working for CIA or NSA","type":"Criminal Organizations"}
+{"name":"Blade Industries","requirements":"Have 400k reputation with the Corporation","type":"Megacorporations"}
+{"name":"MegaCorp","requirements":"Have 400k reputation with the Corporation","type":"Megacorporations"}
+{"name":"Clarke Incorporated","requirements":"Have 400k reputation with the Corporation","type":"Megacorporations"}
+{"name":"Tetrads","requirements":"Be in Chongqing, New Tokyo, or Ishima\nAll Combat Stats of 75\n-18 Karma","type":"Criminal Organizations"}

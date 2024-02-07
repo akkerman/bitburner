@@ -1,88 +1,88 @@
-{"name":"ADR-V1 Pheromone Gene","moneyCost":17500000,"repCost":3750,"companyRep":1.1,"factionRep":1.1,"factions":["MegaCorp","NWO","Four Sigma","The Syndicate","Tian Di Hui"]}
-{"name":"ADR-V2 Pheromone Gene","moneyCost":550000000,"repCost":62500,"companyRep":1.2,"factionRep":1.2,"factions":["Bachman & Associates","Clarke Incorporated","Four Sigma","Silhouette"]}
-{"name":"Artificial Bio-neural Network Implant","moneyCost":3000000000,"repCost":275000,"hacking":1.12,"hacking_speed":1.03,"hacking_money":1.15,"factions":["Fulcrum Secret Technologies","BitRunners"]}
-{"name":"Artificial Synaptic Potentiation","moneyCost":80000000,"repCost":6250,"hacking":1.05,"hacking_chance":1.05,"hacking_speed":1.02,"factions":["The Black Hand","NiteSec"]}
-{"name":"Augmented Targeting I","moneyCost":15000000,"repCost":5000,"dexterity":1.1,"factions":["Blade Industries","OmniTek Incorporated","KuaiGong International","Ishima","Sector-12","Volhaven","The Dark Army","The Syndicate","Slum Snakes"]}
-{"name":"Augmented Targeting II","moneyCost":42500000,"repCost":8750,"dexterity":1.2,"factions":["Blade Industries","OmniTek Incorporated","KuaiGong International","Ishima","Sector-12","Volhaven","The Dark Army","The Syndicate"]}
-{"name":"Augmented Targeting III","moneyCost":115000000,"repCost":27500,"dexterity":1.3,"factions":["The Covenant","Blade Industries","OmniTek Incorporated","KuaiGong International","The Dark Army","The Syndicate"]}
-{"name":"Bionic Arms","moneyCost":275000000,"repCost":62500,"strength":1.3,"dexterity":1.3,"factions":["Tetrads"]}
-{"name":"Bionic Legs","moneyCost":375000000,"repCost":150000,"agility":1.6,"factions":["Blade Industries","OmniTek Incorporated","KuaiGong International","Speakers for the Dead","The Syndicate"]}
-{"name":"Bionic Spine","moneyCost":125000000,"repCost":45000,"strength":1.15,"defense":1.15,"dexterity":1.15,"agility":1.15,"factions":["Blade Industries","OmniTek Incorporated","KuaiGong International","Speakers for the Dead","The Syndicate"]}
-{"name":"BitRunners Neurolink","moneyCost":4375000000,"repCost":875000,"hacking":1.2,"hacking_chance":1.1,"hacking_speed":1.05,"factions":["BitRunners"]}
-{"name":"BitWire","moneyCost":10000000,"repCost":3750,"hacking":1.05,"factions":["NiteSec","CyberSec"]}
-{"name":"BrachiBlades","moneyCost":90000000,"repCost":12500,"strength":1.15,"defense":1.15,"crime_money":1.15,"crime_success":1.1,"factions":["The Syndicate"]}
-{"name":"CashRoot Starter Kit","moneyCost":125000000,"repCost":12500,"factions":["Sector-12"]}
-{"name":"Combat Rib I","moneyCost":23750000,"repCost":7500,"strength":1.1,"defense":1.1,"factions":["Blade Industries","OmniTek Incorporated","KuaiGong International","Ishima","Sector-12","Volhaven","The Dark Army","The Syndicate","Slum Snakes"]}
-{"name":"Combat Rib II","moneyCost":65000000,"repCost":18750,"strength":1.14,"defense":1.14,"factions":["Blade Industries","OmniTek Incorporated","KuaiGong International","Ishima","Sector-12","Volhaven","The Dark Army","The Syndicate"]}
-{"name":"Combat Rib III","moneyCost":120000000,"repCost":35000,"strength":1.18,"defense":1.18,"factions":["The Covenant","Blade Industries","OmniTek Incorporated","KuaiGong International","The Dark Army","The Syndicate"]}
-{"name":"CordiARC Fusion Reactor","moneyCost":5000000000,"repCost":1125000,"strength":1.35,"defense":1.35,"dexterity":1.35,"agility":1.35,"factions":["MegaCorp"]}
-{"name":"Cranial Signal Processors - Gen I","moneyCost":70000000,"repCost":10000,"hacking":1.05,"hacking_speed":1.01,"factions":["CyberSec"]}
-{"name":"Cranial Signal Processors - Gen II","moneyCost":125000000,"repCost":18750,"hacking":1.07,"hacking_chance":1.05,"hacking_speed":1.02,"factions":["NiteSec","CyberSec"]}
-{"name":"Cranial Signal Processors - Gen III","moneyCost":550000000,"repCost":50000,"hacking":1.09,"hacking_speed":1.02,"hacking_money":1.15,"factions":["BitRunners","The Black Hand","NiteSec"]}
-{"name":"Cranial Signal Processors - Gen IV","moneyCost":1100000000,"repCost":125000,"hacking_speed":1.02,"hacking_money":1.2,"hacking_grow":1.25,"factions":["BitRunners","The Black Hand"]}
-{"name":"Cranial Signal Processors - Gen V","moneyCost":2250000000,"repCost":250000,"hacking":1.3,"hacking_money":1.25,"hacking_grow":1.75,"factions":["BitRunners"]}
-{"name":"CRTX42-AA Gene Modification","moneyCost":225000000,"repCost":45000,"hacking":1.15,"factions":["NiteSec"]}
-{"name":"DataJack","moneyCost":450000000,"repCost":112500,"hacking_money":1.25,"factions":["BitRunners","The Black Hand","NiteSec","Chongqing","New Tokyo"]}
-{"name":"DermaForce Particle Barrier","moneyCost":50000000,"repCost":15000,"defense":1.4,"factions":["Volhaven"]}
-{"name":"ECorp HVMind Implant","moneyCost":5500000000,"repCost":1500000,"hacking_grow":3,"factions":["ECorp"]}
-{"name":"Embedded Netburner Module","moneyCost":250000000,"repCost":15000,"hacking":1.08,"factions":["ECorp","MegaCorp","Blade Industries","NWO","Fulcrum Secret Technologies","BitRunners","The Black Hand","NiteSec"]}
-{"name":"Embedded Netburner Module Analyze Engine","moneyCost":6000000000,"repCost":625000,"hacking_speed":1.1,"factions":["Illuminati","Daedalus","The Covenant","ECorp","MegaCorp","NWO","Fulcrum Secret Technologies"]}
-{"name":"Embedded Netburner Module Core Implant","moneyCost":2500000000,"repCost":250000,"hacking":1.07,"hacking_chance":1.03,"hacking_speed":1.03,"hacking_money":1.1,"factions":["ECorp","MegaCorp","Blade Industries","NWO","Fulcrum Secret Technologies","BitRunners","The Black Hand"]}
-{"name":"Embedded Netburner Module Core V2 Upgrade","moneyCost":4500000000,"repCost":1000000,"hacking":1.15,"hacking_chance":1.05,"hacking_speed":1.05,"hacking_money":1.3,"factions":["ECorp","MegaCorp","Blade Industries","NWO","OmniTek Incorporated","KuaiGong International","Fulcrum Secret Technologies","BitRunners"]}
-{"name":"Embedded Netburner Module Core V3 Upgrade","moneyCost":7500000000,"repCost":1750000,"hacking":1.25,"hacking_chance":1.1,"hacking_speed":1.05,"hacking_money":1.4,"factions":["Illuminati","Daedalus","The Covenant","ECorp","MegaCorp","NWO","Fulcrum Secret Technologies"]}
-{"name":"Embedded Netburner Module Direct Memory Access Upgrade","moneyCost":7000000000,"repCost":1000000,"hacking_chance":1.2,"hacking_money":1.4,"factions":["Illuminati","Daedalus","The Covenant","ECorp","MegaCorp","NWO","Fulcrum Secret Technologies"]}
-{"name":"Enhanced Myelin Sheathing","moneyCost":1375000000,"repCost":100000,"hacking":1.1,"hacking_speed":1.03,"factions":["Fulcrum Secret Technologies","BitRunners","The Black Hand"]}
-{"name":"Enhanced Social Interaction Implant","moneyCost":1375000000,"repCost":375000,"charisma":1.6,"factions":["Bachman & Associates","NWO","Clarke Incorporated","OmniTek Incorporated","Four Sigma"]}
-{"name":"FocusWire","moneyCost":900000000,"repCost":75000,"hacking":1.05,"strength":1.05,"defense":1.05,"dexterity":1.05,"agility":1.05,"charisma":1.05,"companyRep":1.1,"work_money":1.2,"factions":["Bachman & Associates","Clarke Incorporated","Four Sigma","KuaiGong International"]}
-{"name":"Graphene Bionic Arms Upgrade","moneyCost":3750000000,"repCost":500000,"strength":1.85,"dexterity":1.85,"factions":["The Dark Army"]}
-{"name":"Graphene Bionic Legs Upgrade","moneyCost":4500000000,"repCost":750000,"agility":2.5,"factions":["ECorp","MegaCorp","Fulcrum Secret Technologies"]}
-{"name":"Graphene Bionic Spine Upgrade","moneyCost":6000000000,"repCost":1625000,"strength":1.6,"defense":1.6,"dexterity":1.6,"agility":1.6,"factions":["ECorp","Fulcrum Secret Technologies"]}
-{"name":"Graphene Bone Lacings","moneyCost":4250000000,"repCost":1125000,"strength":1.7,"defense":1.7,"factions":["The Covenant","Fulcrum Secret Technologies"]}
-{"name":"Graphene BranchiBlades Upgrade","moneyCost":2500000000,"repCost":225000,"strength":1.4,"defense":1.4,"crime_money":1.3,"crime_success":1.1,"factions":["Speakers for the Dead"]}
-{"name":"Hacknet Node Cache Architecture Neural-Upload","moneyCost":5500000,"repCost":2500,"hacknet_node_money":1.1,"hacknet_node_level_cost":0.85,"factions":["Netburners"]}
-{"name":"Hacknet Node Core Direct-Neural Interface","moneyCost":60000000,"repCost":12500,"hacknet_node_money":1.45,"factions":["Netburners"]}
-{"name":"Hacknet Node CPU Architecture Neural-Upload","moneyCost":11000000,"repCost":3750,"hacknet_node_money":1.15,"hacknet_node_purchase_cost":0.85,"factions":["Netburners"]}
-{"name":"Hacknet Node Kernel Direct-Neural Interface","moneyCost":40000000,"repCost":7500,"hacknet_node_money":1.25,"factions":["Netburners"]}
-{"name":"Hacknet Node NIC Architecture Neural-Upload","moneyCost":4500000,"repCost":1875,"hacknet_node_money":1.1,"hacknet_node_purchase_cost":0.9,"factions":["Netburners"]}
-{"name":"HemoRecirculator","moneyCost":45000000,"repCost":10000,"strength":1.08,"defense":1.08,"dexterity":1.08,"agility":1.08,"factions":["The Dark Army","The Syndicate","Tetrads"]}
-{"name":"Here comes the data!","factions":[]}
-{"name":"HyperSight Corneal Implant","moneyCost":2750000000,"repCost":150000,"dexterity":1.4,"hacking_speed":1.03,"hacking_money":1.1,"factions":["Blade Industries","KuaiGong International"]}
-{"name":"INFRARET Enhancement","moneyCost":30000000,"repCost":7500,"dexterity":1.1,"crime_money":1.1,"crime_success":1.25,"factions":["Ishima"]}
-{"name":"LuminCloaking-V1 Skin Implant","moneyCost":5000000,"repCost":1500,"agility":1.05,"crime_money":1.1,"factions":["Tetrads","Slum Snakes"]}
-{"name":"LuminCloaking-V2 Skin Implant","moneyCost":30000000,"repCost":5000,"defense":1.1,"agility":1.1,"crime_money":1.25,"factions":["Tetrads","Slum Snakes"]}
-{"name":"Nanofiber Weave","moneyCost":125000000,"repCost":37500,"strength":1.2,"defense":1.2,"factions":["Blade Industries","OmniTek Incorporated","Fulcrum Secret Technologies","Speakers for the Dead","The Dark Army","The Syndicate","Tian Di Hui"]}
-{"name":"NEMEAN Subdermal Weave","moneyCost":3250000000,"repCost":875000,"defense":2.2,"factions":["Illuminati","Daedalus","The Covenant","Fulcrum Secret Technologies","The Syndicate"]}
-{"name":"Neotra","moneyCost":2875000000,"repCost":562500,"strength":1.55,"defense":1.55,"factions":["Blade Industries"]}
-{"name":"Neural Accelerator","moneyCost":1750000000,"repCost":200000,"hacking":1.15,"hacking_money":1.2,"factions":["BitRunners"]}
-{"name":"Neural-Retention Enhancement","moneyCost":250000000,"repCost":20000,"hacking":1.25,"factions":["NiteSec"]}
-{"name":"Neuralstimulator","moneyCost":3000000000,"repCost":50000,"hacking":1.12,"hacking_chance":1.1,"hacking_speed":1.02,"factions":["Bachman & Associates","Clarke Incorporated","Four Sigma","The Black Hand","Aevum","Chongqing","Ishima","New Tokyo","Sector-12","Volhaven"]}
-{"name":"Neuregen Gene Modification","moneyCost":375000000,"repCost":37500,"hacking":1.4,"factions":["Chongqing"]}
-{"name":"Neuronal Densification","moneyCost":1375000000,"repCost":187500,"hacking":1.1,"hacking_speed":1.03,"factions":["Clarke Incorporated"]}
-{"name":"Neurotrainer I","moneyCost":4000000,"repCost":1000,"hacking":1.1,"strength":1.1,"defense":1.1,"dexterity":1.1,"agility":1.1,"charisma":1.1,"factions":["CyberSec"]}
-{"name":"Neurotrainer II","moneyCost":45000000,"repCost":10000,"hacking":1.15,"strength":1.15,"defense":1.15,"dexterity":1.15,"agility":1.15,"charisma":1.15,"factions":["BitRunners","NiteSec"]}
-{"name":"Neurotrainer III","moneyCost":130000000,"repCost":25000,"hacking":1.2,"strength":1.2,"defense":1.2,"dexterity":1.2,"agility":1.2,"charisma":1.2,"factions":["NWO","Four Sigma"]}
-{"name":"nextSENS Gene Modification","moneyCost":1925000000,"repCost":437500,"hacking":1.2,"strength":1.2,"defense":1.2,"dexterity":1.2,"agility":1.2,"charisma":1.2,"factions":["Clarke Incorporated"]}
-{"name":"Nuoptimal Nootropic Injector Implant","moneyCost":20000000,"repCost":5000,"companyRep":1.2,"factions":["Bachman & Associates","Clarke Incorporated","Four Sigma","Chongqing","Ishima","New Tokyo","Volhaven","Tian Di Hui"]}
-{"name":"NutriGen Implant","moneyCost":2500000,"repCost":6250,"strength":1.2,"defense":1.2,"dexterity":1.2,"agility":1.2,"factions":["New Tokyo"]}
-{"name":"OmniTek InfoLoad","moneyCost":2875000000,"repCost":625000,"hacking":1.25,"factions":["OmniTek Incorporated"]}
-{"name":"PC Direct-Neural Interface","moneyCost":3750000000,"repCost":375000,"hacking":1.08,"companyRep":1.3,"factions":["ECorp","Blade Industries","OmniTek Incorporated","Four Sigma"]}
-{"name":"PC Direct-Neural Interface NeuroNet Injector","moneyCost":7500000000,"repCost":1500000,"hacking":1.1,"hacking_speed":1.05,"companyRep":2,"factions":["Fulcrum Secret Technologies"]}
-{"name":"PC Direct-Neural Interface Optimization Submodule","moneyCost":4500000000,"repCost":500000,"hacking":1.1,"companyRep":1.75,"factions":["ECorp","Blade Industries","Fulcrum Secret Technologies"]}
-{"name":"Photosynthetic Cells","moneyCost":2750000000,"repCost":562500,"strength":1.4,"defense":1.4,"agility":1.4,"factions":["KuaiGong International"]}
-{"name":"Power Recirculation Core","moneyCost":180000000,"repCost":25000,"hacking":1.1,"strength":1.1,"defense":1.1,"dexterity":1.1,"agility":1.1,"charisma":1.1,"factions":["NWO","The Dark Army","The Syndicate","Tetrads"]}
-{"name":"QLink","moneyCost":25000000000000,"repCost":1875000,"hacking":1.75,"hacking_chance":2.5,"hacking_speed":2,"hacking_money":4,"factions":["Illuminati"]}
-{"name":"SmartJaw","moneyCost":2750000000,"repCost":375000,"charisma":1.5,"companyRep":1.25,"factionRep":1.25,"factions":["Bachman & Associates"]}
-{"name":"SmartSonar Implant","moneyCost":75000000,"repCost":22500,"dexterity":1.15,"crime_money":1.25,"factions":["Slum Snakes"]}
-{"name":"Social Negotiation Assistant (S.N.A)","moneyCost":30000000,"repCost":6250,"companyRep":1.15,"factionRep":1.15,"work_money":1.1,"factions":["Tian Di Hui"]}
-{"name":"Speech Enhancement","moneyCost":12500000,"repCost":2500,"charisma":1.1,"companyRep":1.1,"factions":["Bachman & Associates","Clarke Incorporated","Four Sigma","KuaiGong International","Speakers for the Dead","Tian Di Hui"]}
-{"name":"Speech Processor Implant","moneyCost":50000000,"repCost":7500,"charisma":1.2,"factions":["Aevum","Chongqing","Ishima","New Tokyo","Sector-12","Volhaven","Silhouette","Tian Di Hui"]}
-{"name":"SPTN-97 Gene Modification","moneyCost":4875000000,"repCost":1250000,"hacking":1.15,"strength":1.75,"defense":1.75,"dexterity":1.75,"agility":1.75,"factions":["The Covenant"]}
-{"name":"Synaptic Enhancement Implant","moneyCost":7500000,"repCost":2000,"hacking_speed":1.03,"factions":["CyberSec"]}
-{"name":"Synfibril Muscle","moneyCost":1125000000,"repCost":437500,"strength":1.3,"defense":1.3,"factions":["Illuminati","Daedalus","The Covenant","Blade Industries","NWO","KuaiGong International","Fulcrum Secret Technologies","Speakers for the Dead"]}
-{"name":"Synthetic Heart","moneyCost":2875000000,"repCost":750000,"strength":1.5,"agility":1.5,"factions":["Illuminati","Daedalus","The Covenant","NWO","KuaiGong International","Fulcrum Secret Technologies","Speakers for the Dead"]}
-{"name":"The Black Hand","moneyCost":550000000,"repCost":100000,"hacking":1.1,"strength":1.15,"dexterity":1.15,"hacking_speed":1.02,"hacking_money":1.1,"factions":["The Black Hand"]}
-{"name":"The Red Pill","moneyCost":0,"repCost":2500000,"factions":["Daedalus"]}
-{"name":"The Shadow's Simulacrum","moneyCost":400000000,"repCost":37500,"companyRep":1.15,"factionRep":1.15,"factions":["Speakers for the Dead","The Dark Army","The Syndicate"]}
-{"name":"TITN-41 Gene-Modification Injection","moneyCost":190000000,"repCost":25000,"charisma":1.15,"factions":["Silhouette"]}
-{"name":"Wired Reflexes","moneyCost":2500000,"repCost":1250,"dexterity":1.05,"agility":1.05,"factions":["Aevum","Ishima","Sector-12","Volhaven","Speakers for the Dead","The Dark Army","The Syndicate","Slum Snakes","Tian Di Hui"]}
-{"name":"Xanipher","moneyCost":4250000000,"repCost":875000,"hacking":1.15,"strength":1.15,"defense":1.15,"dexterity":1.15,"agility":1.15,"charisma":1.15,"factions":["NWO"]}
+{"name":"Cranial Signal Processors - Gen III","moneyCost":550000000,"repCost":50000,"hacking":1.09,"hacking_speed":1.02,"hacking_money":1.15,"factions":["BitRunners","The Black Hand","NiteSec"],"owned":false,"prerequisites":["Cranial Signal Processors - Gen I","Cranial Signal Processors - Gen II"]}
+{"name":"Combat Rib II","moneyCost":65000000,"repCost":18750,"strength":1.14,"defense":1.14,"factions":["Blade Industries","OmniTek Incorporated","KuaiGong International","Ishima","Sector-12","Volhaven","The Dark Army","The Syndicate"],"owned":true,"prerequisites":["Combat Rib I"]}
+{"name":"Bionic Legs","moneyCost":375000000,"repCost":150000,"agility":1.6,"factions":["Blade Industries","OmniTek Incorporated","KuaiGong International","Speakers for the Dead","The Syndicate"],"owned":false}
+{"name":"BrachiBlades","moneyCost":90000000,"repCost":12500,"strength":1.15,"defense":1.15,"crime_money":1.15,"crime_success":1.1,"factions":["The Syndicate"],"owned":false}
+{"name":"BitWire","moneyCost":10000000,"repCost":3750,"hacking":1.05,"factions":["NiteSec","CyberSec"],"owned":false}
+{"name":"Augmented Targeting I","moneyCost":15000000,"repCost":5000,"dexterity":1.1,"factions":["Blade Industries","OmniTek Incorporated","KuaiGong International","Ishima","Sector-12","Volhaven","The Dark Army","The Syndicate","Slum Snakes"],"owned":true}
+{"name":"Augmented Targeting II","moneyCost":42500000,"repCost":8750,"dexterity":1.2,"factions":["Blade Industries","OmniTek Incorporated","KuaiGong International","Ishima","Sector-12","Volhaven","The Dark Army","The Syndicate"],"owned":true,"prerequisites":["Augmented Targeting I"]}
+{"name":"BitRunners Neurolink","moneyCost":4375000000,"repCost":875000,"hacking":1.2,"hacking_chance":1.1,"hacking_speed":1.05,"factions":["BitRunners"],"owned":false}
+{"name":"DataJack","moneyCost":450000000,"repCost":112500,"hacking_money":1.25,"factions":["BitRunners","The Black Hand","NiteSec","Chongqing","New Tokyo"],"owned":false}
+{"name":"ADR-V2 Pheromone Gene","moneyCost":550000000,"repCost":62500,"companyRep":1.2,"factionRep":1.2,"factions":["Bachman & Associates","Clarke Incorporated","Four Sigma","Silhouette"],"owned":false}
+{"name":"DermaForce Particle Barrier","moneyCost":50000000,"repCost":15000,"defense":1.4,"factions":["Volhaven"],"owned":false}
+{"name":"Embedded Netburner Module Core V3 Upgrade","moneyCost":7500000000,"repCost":1750000,"hacking":1.25,"hacking_chance":1.1,"hacking_speed":1.05,"hacking_money":1.4,"factions":["Illuminati","Daedalus","The Covenant","ECorp","MegaCorp","NWO","Fulcrum Secret Technologies"],"owned":false,"prerequisites":["Embedded Netburner Module","Embedded Netburner Module Core Implant","Embedded Netburner Module Core V2 Upgrade"]}
+{"name":"Hacknet Node Cache Architecture Neural-Upload","moneyCost":5500000,"repCost":2500,"hacknet_node_money":1.1,"hacknet_node_level_cost":0.85,"factions":["Netburners"],"owned":false}
+{"name":"Hacknet Node NIC Architecture Neural-Upload","moneyCost":4500000,"repCost":1875,"hacknet_node_money":1.1,"hacknet_node_purchase_cost":0.9,"factions":["Netburners"],"owned":false}
+{"name":"INFRARET Enhancement","moneyCost":30000000,"repCost":7500,"dexterity":1.1,"crime_money":1.1,"crime_success":1.25,"factions":["Ishima"],"owned":false}
+{"name":"Neotra","moneyCost":2875000000,"repCost":562500,"strength":1.55,"defense":1.55,"factions":["Blade Industries"],"owned":false}
+{"name":"Neuralstimulator","moneyCost":3000000000,"repCost":50000,"hacking":1.12,"hacking_chance":1.1,"hacking_speed":1.02,"factions":["Bachman & Associates","Clarke Incorporated","Four Sigma","The Black Hand","Aevum","Chongqing","Ishima","New Tokyo","Sector-12","Volhaven"],"owned":true}
+{"name":"PC Direct-Neural Interface NeuroNet Injector","moneyCost":7500000000,"repCost":1500000,"hacking":1.1,"hacking_speed":1.05,"companyRep":2,"factions":["Fulcrum Secret Technologies"],"prerequisites":["PC Direct-Neural Interface"],"owned":false}
+{"name":"Artificial Synaptic Potentiation","moneyCost":80000000,"repCost":6250,"hacking":1.05,"hacking_chance":1.05,"hacking_speed":1.02,"factions":["The Black Hand","NiteSec"],"owned":false}
+{"name":"Cranial Signal Processors - Gen I","moneyCost":70000000,"repCost":10000,"hacking":1.05,"hacking_speed":1.01,"factions":["CyberSec"],"owned":false}
+{"name":"Embedded Netburner Module","moneyCost":250000000,"repCost":15000,"hacking":1.08,"factions":["ECorp","MegaCorp","Blade Industries","NWO","Fulcrum Secret Technologies","BitRunners","The Black Hand","NiteSec"],"owned":false}
+{"name":"HemoRecirculator","moneyCost":45000000,"repCost":10000,"strength":1.08,"defense":1.08,"dexterity":1.08,"agility":1.08,"factions":["The Dark Army","The Syndicate","Tetrads"],"owned":false}
+{"name":"NutriGen Implant","moneyCost":2500000,"repCost":6250,"strength":1.2,"defense":1.2,"dexterity":1.2,"agility":1.2,"factions":["New Tokyo"],"owned":false}
+{"name":"SmartJaw","moneyCost":2750000000,"repCost":375000,"charisma":1.5,"companyRep":1.25,"factionRep":1.25,"factions":["Bachman & Associates"],"owned":false}
+{"name":"SmartSonar Implant","moneyCost":75000000,"repCost":22500,"dexterity":1.15,"crime_money":1.25,"factions":["Slum Snakes"],"owned":false}
+{"name":"Xanipher","moneyCost":4250000000,"repCost":875000,"hacking":1.15,"strength":1.15,"defense":1.15,"dexterity":1.15,"agility":1.15,"charisma":1.15,"factions":["NWO"],"owned":false}
+{"name":"Neuregen Gene Modification","moneyCost":375000000,"repCost":37500,"hacking":1.4,"factions":["Chongqing"],"owned":false}
+{"name":"Cranial Signal Processors - Gen II","moneyCost":125000000,"repCost":18750,"hacking":1.07,"hacking_chance":1.05,"hacking_speed":1.02,"factions":["NiteSec","CyberSec"],"owned":false,"prerequisites":["Cranial Signal Processors - Gen I"]}
+{"name":"Hacknet Node Kernel Direct-Neural Interface","moneyCost":40000000,"repCost":7500,"hacknet_node_money":1.25,"factions":["Netburners"],"owned":false}
+{"name":"Neural-Retention Enhancement","moneyCost":250000000,"repCost":20000,"hacking":1.25,"factions":["NiteSec"],"owned":false}
+{"name":"PC Direct-Neural Interface Optimization Submodule","moneyCost":4500000000,"repCost":500000,"hacking":1.1,"companyRep":1.75,"factions":["ECorp","Blade Industries","Fulcrum Secret Technologies"],"prerequisites":["PC Direct-Neural Interface"],"owned":false}
+{"name":"Embedded Netburner Module Core Implant","moneyCost":2500000000,"repCost":250000,"hacking":1.07,"hacking_chance":1.03,"hacking_speed":1.03,"hacking_money":1.1,"factions":["ECorp","MegaCorp","Blade Industries","NWO","Fulcrum Secret Technologies","BitRunners","The Black Hand"],"owned":false,"prerequisites":["Embedded Netburner Module"]}
+{"name":"Photosynthetic Cells","moneyCost":2750000000,"repCost":562500,"strength":1.4,"defense":1.4,"agility":1.4,"factions":["KuaiGong International"],"owned":false}
+{"name":"Social Negotiation Assistant (S.N.A)","moneyCost":30000000,"repCost":6250,"companyRep":1.15,"factionRep":1.15,"work_money":1.1,"factions":["Tian Di Hui"],"owned":false}
+{"name":"Wired Reflexes","moneyCost":2500000,"repCost":1250,"dexterity":1.05,"agility":1.05,"factions":["Aevum","Ishima","Sector-12","Volhaven","Speakers for the Dead","The Dark Army","The Syndicate","Slum Snakes","Tian Di Hui"],"owned":true}
+{"name":"nextSENS Gene Modification","moneyCost":1925000000,"repCost":437500,"hacking":1.2,"strength":1.2,"defense":1.2,"dexterity":1.2,"agility":1.2,"charisma":1.2,"factions":["Clarke Incorporated"],"owned":false}
+{"name":"Power Recirculation Core","moneyCost":180000000,"repCost":25000,"hacking":1.1,"strength":1.1,"defense":1.1,"dexterity":1.1,"agility":1.1,"charisma":1.1,"factions":["NWO","The Dark Army","The Syndicate","Tetrads"],"owned":false}
+{"name":"CRTX42-AA Gene Modification","moneyCost":225000000,"repCost":45000,"hacking":1.15,"factions":["NiteSec"],"owned":false}
+{"name":"Embedded Netburner Module Core V2 Upgrade","moneyCost":4500000000,"repCost":1000000,"hacking":1.15,"hacking_chance":1.05,"hacking_speed":1.05,"hacking_money":1.3,"factions":["ECorp","MegaCorp","Blade Industries","NWO","OmniTek Incorporated","KuaiGong International","Fulcrum Secret Technologies","BitRunners"],"owned":false,"prerequisites":["Embedded Netburner Module","Embedded Netburner Module Core Implant"]}
+{"name":"Embedded Netburner Module Direct Memory Access Upgrade","moneyCost":7000000000,"repCost":1000000,"hacking_chance":1.2,"hacking_money":1.4,"factions":["Illuminati","Daedalus","The Covenant","ECorp","MegaCorp","NWO","Fulcrum Secret Technologies"],"prerequisites":["Embedded Netburner Module"],"owned":false}
+{"name":"Enhanced Social Interaction Implant","moneyCost":1375000000,"repCost":375000,"charisma":1.6,"factions":["Bachman & Associates","NWO","Clarke Incorporated","OmniTek Incorporated","Four Sigma"],"owned":false}
+{"name":"PC Direct-Neural Interface","moneyCost":3750000000,"repCost":375000,"hacking":1.08,"companyRep":1.3,"factions":["ECorp","Blade Industries","OmniTek Incorporated","Four Sigma"],"owned":false}
+{"name":"Combat Rib I","moneyCost":23750000,"repCost":7500,"strength":1.1,"defense":1.1,"factions":["Blade Industries","OmniTek Incorporated","KuaiGong International","Ishima","Sector-12","Volhaven","The Dark Army","The Syndicate","Slum Snakes"],"owned":true}
+{"name":"Graphene Bionic Spine Upgrade","moneyCost":6000000000,"repCost":1625000,"strength":1.6,"defense":1.6,"dexterity":1.6,"agility":1.6,"factions":["ECorp","Fulcrum Secret Technologies"],"prerequisites":["Bionic Spine"],"owned":false}
+{"name":"Hacknet Node CPU Architecture Neural-Upload","moneyCost":11000000,"repCost":3750,"hacknet_node_money":1.15,"hacknet_node_purchase_cost":0.85,"factions":["Netburners"],"owned":false}
+{"name":"LuminCloaking-V1 Skin Implant","moneyCost":5000000,"repCost":1500,"agility":1.05,"crime_money":1.1,"factions":["Tetrads","Slum Snakes"],"owned":false}
+{"name":"LuminCloaking-V2 Skin Implant","moneyCost":30000000,"repCost":5000,"defense":1.1,"agility":1.1,"crime_money":1.25,"factions":["Tetrads","Slum Snakes"],"owned":false}
+{"name":"Synaptic Enhancement Implant","moneyCost":7500000,"repCost":2000,"hacking_speed":1.03,"factions":["CyberSec"],"owned":false}
+{"name":"The Black Hand","moneyCost":550000000,"repCost":100000,"hacking":1.1,"strength":1.15,"dexterity":1.15,"hacking_speed":1.02,"hacking_money":1.1,"factions":["The Black Hand"],"owned":false}
+{"name":"TITN-41 Gene-Modification Injection","moneyCost":190000000,"repCost":25000,"charisma":1.15,"factions":["Silhouette"],"owned":false}
+{"name":"Enhanced Myelin Sheathing","moneyCost":1375000000,"repCost":100000,"hacking":1.1,"hacking_speed":1.03,"factions":["Fulcrum Secret Technologies","BitRunners","The Black Hand"],"owned":false}
+{"name":"ECorp HVMind Implant","moneyCost":5500000000,"repCost":1500000,"hacking_grow":3,"factions":["ECorp"],"owned":false}
+{"name":"FocusWire","moneyCost":900000000,"repCost":75000,"hacking":1.05,"strength":1.05,"defense":1.05,"dexterity":1.05,"agility":1.05,"charisma":1.05,"companyRep":1.1,"work_money":1.2,"factions":["Bachman & Associates","Clarke Incorporated","Four Sigma","KuaiGong International"],"owned":false}
+{"name":"Graphene Bionic Arms Upgrade","moneyCost":3750000000,"repCost":500000,"strength":1.85,"dexterity":1.85,"factions":["The Dark Army"],"owned":false}
+{"name":"Graphene Bone Lacings","moneyCost":4250000000,"repCost":1125000,"strength":1.7,"defense":1.7,"factions":["The Covenant","Fulcrum Secret Technologies"],"owned":false}
+{"name":"Neurotrainer II","moneyCost":45000000,"repCost":10000,"hacking":1.15,"strength":1.15,"defense":1.15,"dexterity":1.15,"agility":1.15,"charisma":1.15,"factions":["BitRunners","NiteSec"],"owned":false}
+{"name":"Speech Processor Implant","moneyCost":50000000,"repCost":7500,"charisma":1.2,"factions":["Aevum","Chongqing","Ishima","New Tokyo","Sector-12","Volhaven","Silhouette","Tian Di Hui"],"owned":true}
+{"name":"ADR-V1 Pheromone Gene","moneyCost":17500000,"repCost":3750,"companyRep":1.1,"factionRep":1.1,"factions":["MegaCorp","NWO","Four Sigma","The Syndicate","Tian Di Hui"],"owned":false}
+{"name":"NEMEAN Subdermal Weave","moneyCost":3250000000,"repCost":875000,"defense":2.2,"factions":["Illuminati","Daedalus","The Covenant","Fulcrum Secret Technologies","The Syndicate"],"owned":false}
+{"name":"Neurotrainer III","moneyCost":130000000,"repCost":25000,"hacking":1.2,"strength":1.2,"defense":1.2,"dexterity":1.2,"agility":1.2,"charisma":1.2,"factions":["NWO","Four Sigma"],"owned":false}
+{"name":"Augmented Targeting III","moneyCost":115000000,"repCost":27500,"dexterity":1.3,"factions":["The Covenant","Blade Industries","OmniTek Incorporated","KuaiGong International","The Dark Army","The Syndicate"],"prerequisites":["Augmented Targeting I","Augmented Targeting II"],"owned":false}
+{"name":"CordiARC Fusion Reactor","moneyCost":5000000000,"repCost":1125000,"strength":1.35,"defense":1.35,"dexterity":1.35,"agility":1.35,"factions":["MegaCorp"],"owned":false}
+{"name":"Cranial Signal Processors - Gen IV","moneyCost":1100000000,"repCost":125000,"hacking_speed":1.02,"hacking_money":1.2,"hacking_grow":1.25,"factions":["BitRunners","The Black Hand"],"owned":false,"prerequisites":["Cranial Signal Processors - Gen I","Cranial Signal Processors - Gen II","Cranial Signal Processors - Gen III"]}
+{"name":"Cranial Signal Processors - Gen V","moneyCost":2250000000,"repCost":250000,"hacking":1.3,"hacking_money":1.25,"hacking_grow":1.75,"factions":["BitRunners"],"owned":false,"prerequisites":["Cranial Signal Processors - Gen I","Cranial Signal Processors - Gen II","Cranial Signal Processors - Gen III","Cranial Signal Processors - Gen IV"]}
+{"name":"Embedded Netburner Module Analyze Engine","moneyCost":6000000000,"repCost":625000,"hacking_speed":1.1,"factions":["Illuminati","Daedalus","The Covenant","ECorp","MegaCorp","NWO","Fulcrum Secret Technologies"],"owned":false,"prerequisites":["Embedded Netburner Module"]}
+{"name":"Synfibril Muscle","moneyCost":1125000000,"repCost":437500,"strength":1.3,"defense":1.3,"factions":["Illuminati","Daedalus","The Covenant","Blade Industries","NWO","KuaiGong International","Fulcrum Secret Technologies","Speakers for the Dead"],"owned":false}
+{"name":"Artificial Bio-neural Network Implant","moneyCost":3000000000,"repCost":275000,"hacking":1.12,"hacking_speed":1.03,"hacking_money":1.15,"factions":["Fulcrum Secret Technologies","BitRunners"],"owned":false}
+{"name":"Bionic Spine","moneyCost":125000000,"repCost":45000,"strength":1.15,"defense":1.15,"dexterity":1.15,"agility":1.15,"factions":["Blade Industries","OmniTek Incorporated","KuaiGong International","Speakers for the Dead","The Syndicate"],"owned":false}
+{"name":"CashRoot Starter Kit","moneyCost":125000000,"repCost":12500,"factions":["Sector-12"],"owned":true}
+{"name":"Nanofiber Weave","moneyCost":125000000,"repCost":37500,"strength":1.2,"defense":1.2,"factions":["Blade Industries","OmniTek Incorporated","Fulcrum Secret Technologies","Speakers for the Dead","The Dark Army","The Syndicate","Tian Di Hui"],"owned":false}
+{"name":"Neural Accelerator","moneyCost":1750000000,"repCost":200000,"hacking":1.15,"hacking_money":1.2,"factions":["BitRunners"],"owned":false}
+{"name":"OmniTek InfoLoad","moneyCost":2875000000,"repCost":625000,"hacking":1.25,"factions":["OmniTek Incorporated"],"owned":false}
+{"name":"QLink","moneyCost":25000000000000,"repCost":1875000,"hacking":1.75,"hacking_chance":2.5,"hacking_speed":2,"hacking_money":4,"factions":["Illuminati"],"owned":false}
+{"name":"The Red Pill","moneyCost":0,"repCost":2500000,"factions":["Daedalus"],"owned":false}
+{"name":"Neuronal Densification","moneyCost":1375000000,"repCost":187500,"hacking":1.1,"hacking_speed":1.03,"factions":["Clarke Incorporated"],"owned":false}
+{"name":"Speech Enhancement","moneyCost":12500000,"repCost":2500,"charisma":1.1,"companyRep":1.1,"factions":["Bachman & Associates","Clarke Incorporated","Four Sigma","KuaiGong International","Speakers for the Dead","Tian Di Hui"],"owned":false}
+{"name":"Synthetic Heart","moneyCost":2875000000,"repCost":750000,"strength":1.5,"agility":1.5,"factions":["Illuminati","Daedalus","The Covenant","NWO","KuaiGong International","Fulcrum Secret Technologies","Speakers for the Dead"],"owned":false}
+{"name":"Bionic Arms","moneyCost":275000000,"repCost":62500,"strength":1.3,"dexterity":1.3,"factions":["Tetrads"],"owned":false}
+{"name":"Combat Rib III","moneyCost":120000000,"repCost":35000,"strength":1.18,"defense":1.18,"factions":["The Covenant","Blade Industries","OmniTek Incorporated","KuaiGong International","The Dark Army","The Syndicate"],"prerequisites":["Combat Rib I","Combat Rib II"],"owned":false}
+{"name":"Graphene Bionic Legs Upgrade","moneyCost":4500000000,"repCost":750000,"agility":2.5,"factions":["ECorp","MegaCorp","Fulcrum Secret Technologies"],"prerequisites":["Bionic Legs"],"owned":false}
+{"name":"Hacknet Node Core Direct-Neural Interface","moneyCost":60000000,"repCost":12500,"hacknet_node_money":1.45,"factions":["Netburners"],"owned":false}
+{"name":"Nuoptimal Nootropic Injector Implant","moneyCost":20000000,"repCost":5000,"companyRep":1.2,"factions":["Bachman & Associates","Clarke Incorporated","Four Sigma","Chongqing","Ishima","New Tokyo","Volhaven","Tian Di Hui"],"owned":false}
+{"name":"SPTN-97 Gene Modification","moneyCost":4875000000,"repCost":1250000,"hacking":1.15,"strength":1.75,"defense":1.75,"dexterity":1.75,"agility":1.75,"factions":["The Covenant"],"owned":false}
+{"name":"Graphene BranchiBlades Upgrade","moneyCost":2500000000,"repCost":225000,"strength":1.4,"defense":1.4,"crime_money":1.3,"crime_success":1.1,"factions":["Speakers for the Dead"],"owned":false}
+{"name":"Here comes the data!","factions":[],"owned":false}
+{"name":"HyperSight Corneal Implant","moneyCost":2750000000,"repCost":150000,"dexterity":1.4,"hacking_speed":1.03,"hacking_money":1.1,"factions":["Blade Industries","KuaiGong International"],"owned":false}
+{"name":"Neurotrainer I","moneyCost":4000000,"repCost":1000,"hacking":1.1,"strength":1.1,"defense":1.1,"dexterity":1.1,"agility":1.1,"charisma":1.1,"factions":["CyberSec"],"owned":false}
+{"name":"The Shadow's Simulacrum","moneyCost":400000000,"repCost":37500,"companyRep":1.15,"factionRep":1.15,"factions":["Speakers for the Dead","The Dark Army","The Syndicate"],"owned":false}
