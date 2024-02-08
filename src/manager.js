@@ -17,109 +17,122 @@ export function main (ns) {
 
   const targets = servers.targets
     .filter(s => s.hasRootAccess && s.hackLevel < hackingLevel)
-    .sort((a, b) => b.hackChance - a.hackChance)
+    .sort((a, b) => {
+      if (b.hackChance === a.hackChance) {
+        return a.portsRequired - b.portsRequired
+      }
+      return b.hackChance - a.hackChance
+    })
 
-  const workerTargets = targets.filter(s => s.hackChance < 1)
-  const homeTargets = targets.filter(s => s.hackChance >= 1)
+  let workerTargets = targets
+  let homeTargets = targets
 
-  const max = Math.min(workerTargets.length, workers.length)
-
-  ns.print(`workers: ${workers.length}, targets: ${workerTargets.length}`)
-
-  ns.print(`deploy to ${max} workers`)
-
-  for (let i = 0; i < max; i += 1) {
-    const { host: worker, memory } = workers[i]
-    const { host: target, maxMoney, moneyHacked, minSecurity, hackChance } = workerTargets[i]
-
-    const threads = Math.floor(memory / ns.getScriptRam(script))
-    const hackThreads = Math.floor(0.5 / moneyHacked)
-
-    /** @type {Params} */
-    const params = {
-      target,
-      securityThreshold: 5 + minSecurity,
-      moneyThreshold: 0.75 * maxMoney,
-      hackThreads: Math.min(hackThreads, threads),
-      threads,
-      hackChance,
-    }
-
-    const scripts = ns.ps(worker)
-
-    ns.print({ running: scripts })
-
-    if (scripts.find(s => {
-      if (s.filename !== script) return false
-      const p = JSON.parse(s.args)
-
-      return p.target === target && p.threads === threads
-    })) continue
-
-    ns.killall(worker)
-    ns.scp(script, worker)
-    ns.print(`Deploy ${script} on ${worker} with ${threads} threads and parameters: ${JSON.stringify(params)}`)
-    ns.exec(script, worker, threads, JSON.stringify(params))
+  // als er veel memory is op HOME dan kunnen we wachten met workers maken
+  if (targets.length > workers.length && workers.length > 5) {
+    // als het er weinig zijn dan altijd wel dingen execen op de workers!
+    // hackchange worden er steeds meer 1 van ...
+    workerTargets = targets.filter(s => s.portsRequired > 1)
+    homeTargets = targets.filter(s => s.portsRequired <= 1)
   }
 
-  // function deployHomeScripts () {
-  const runningScripts = ns.ps('home')
-  const runningTargets = new Set()
+  execHome()
+  execWorkers()
+  execRootedServers()
 
-  for (const running of runningScripts) {
-    if (running.filename === script) {
-      const params = JSON.parse(running.args[0])
+  // end of main
 
-      runningTargets.add(params.target)
+  function execWorkers () {
+    const max = Math.min(workerTargets.length, workers.length)
+
+    for (let i = 0; i < max; i += 1) {
+      const { host: worker, memory } = workers[i]
+      const { host: target, maxMoney, moneyHacked, minSecurity, hackChance } = workerTargets[i]
+
+      const threads = Math.floor(memory / ns.getScriptRam(script))
+      const hackThreads = Math.floor(0.5 / moneyHacked)
+
+      /** @type {Params} */
+      const params = {
+        target,
+        securityThreshold: 5 + minSecurity,
+        moneyThreshold: 0.75 * maxMoney,
+        hackThreads: Math.min(hackThreads, threads),
+        threads,
+        hackChance,
+      }
+
+      execOneServer(script, worker, threads, params)
     }
   }
 
-  for (const ht of homeTargets) {
-    const { host: target, maxMoney, moneyHacked, minSecurity, hackChance } = ht
+  function execHome () {
+    for (const ht of homeTargets) {
+      const { host: target, maxMoney, moneyHacked, minSecurity, hackChance } = ht
 
-    if (runningTargets.has(target)) continue
+      const threads = 5
+      const hackThreads = Math.floor(0.5 / moneyHacked)
 
-    const threads = 1024
-    const hackThreads = Math.floor(0.5 / moneyHacked)
+      /** @type {Params} */
+      const params = {
+        target,
+        securityThreshold: 5 + minSecurity,
+        moneyThreshold: 0.75 * maxMoney,
+        hackThreads: Math.min(hackThreads, threads),
+        threads,
+        hackChance,
+      }
 
-    /** @type {Params} */
-    const params = {
-      target,
-      securityThreshold: 5 + minSecurity,
-      moneyThreshold: 0.75 * maxMoney,
-      hackThreads: Math.min(hackThreads, threads),
-      threads,
-      hackChance,
+      execOneServer(script, 'home', threads, params)
     }
-
-    ns.print(`Deploy ${script} on home with ${threads} threads and parameters: ${JSON.stringify(params)}`)
-    ns.exec(script, 'home', threads, JSON.stringify(params))
   }
 
-  // function deployTargetScripts()
-  for (const tgt of targets) {
-    const { host: target, maxMoney, moneyHacked, minSecurity, hackChance, memory } = tgt
+  function execRootedServers () {
+    for (const rooted of targets) {
+      const { host, maxMoney, moneyHacked, minSecurity, hackChance, memory } = rooted
 
-    if (memory === 0) continue
-    if (ns.ps(target).find(s => s.filename === script)) continue
+      if (memory === 0) continue
 
-    ns.killall(target)
+      const hackThreads = Math.floor(0.5 / moneyHacked)
+      const threads = Math.floor(memory / ns.getScriptRam(script))
 
-    const hackThreads = Math.floor(0.5 / moneyHacked)
-    const threads = Math.floor(memory / ns.getScriptRam(script))
+      /** @type {Params} */
+      const params = {
+        target: host,
+        securityThreshold: 5 + minSecurity,
+        moneyThreshold: 0.75 * maxMoney,
+        hackThreads: Math.min(hackThreads, threads),
+        threads,
+        hackChance,
+      }
 
-    /** @type {Params} */
-    const params = {
-      target,
-      securityThreshold: 5 + minSecurity,
-      moneyThreshold: 0.75 * maxMoney,
-      hackThreads: Math.min(hackThreads, threads),
-      threads,
-      hackChance,
+      execOneServer(script, host, threads, params)
+    }
+  }
+
+  function makeSameScript (script, target) {
+    return (proc) => {
+      if (proc.filename !== script) return false
+
+      const p = JSON.parse(proc.args[0])
+
+      return p.target === target
+    }
+  }
+
+  function execOneServer (script, host, threads, params) {
+    const sameScript = makeSameScript(script, params.target)
+    const processes = ns.ps(host).filter(sameScript)
+
+    for (const proc of processes) {
+      if (proc.threads !== threads) {
+        ns.kill(proc.pid)
+      }
     }
 
-    ns.print(`Deploy ${script} on target with ${threads} threads and parameters: ${JSON.stringify(params)}`)
-    ns.scp(script, target)
-    ns.exec(script, target, threads, JSON.stringify(params))
+    if (ns.ps(host).find(sameScript)) return
+
+    ns.print(`exec ${script} on ${host} with ${threads} threads and parameters: ${JSON.stringify(params)}`)
+    ns.scp(script, host)
+    ns.exec(script, host, threads, JSON.stringify(params))
   }
 }

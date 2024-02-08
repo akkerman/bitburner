@@ -29,6 +29,7 @@ export function main (ns) {
       hackTime: ns.getHackTime(host),
       memory: ns.getServerMaxRam(host),
       minSecurity: ns.getServerMinSecurityLevel(host),
+      portsRequired: ns.getServerNumPortsRequired(host),
     }
 
     if (host.includes('worker')) {
