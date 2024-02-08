@@ -1,6 +1,7 @@
 /** @typedef {import('./NetscriptDefinitions').NS} NS */
 /** @param {NS} ns */
 export function main (ns) {
+  const doc = eval('document') // eslint-disable-line 
   const start = ns.getHostname()
   const search = ns.args[0]
 
@@ -11,6 +12,8 @@ export function main (ns) {
 
   let node
 
+  let cmd = null
+
   while ((node = queue.shift())) {
     const { server, path } = node
 
@@ -18,8 +21,8 @@ export function main (ns) {
       const p = path.concat([server]).join('; connect ')
       const idx = p.indexOf(';')
 
-      ns.tprint(p.slice(idx + 1))
-      return 'done'
+      cmd = p.slice(idx + 1)
+      break
     }
     if (visited.has(server)) { continue }
     visited.add(server)
@@ -30,5 +33,15 @@ export function main (ns) {
       queue.push({ server: neigbour, path: newPath })
     }
   }
-  ns.tprint(`No server was found matching ${search}`)
+  if (cmd) {
+    const terminalInput = doc.getElementById('terminal-input')
+
+    terminalInput.value = cmd
+    const handler = Object.keys(terminalInput)[1]
+
+    terminalInput[handler].onChange({ target: terminalInput })
+    terminalInput[handler].onKeyDown({ key: 'Enter', preventDefault: () => null })
+  } else {
+    ns.tprint(`No server was found matching ${search}`)
+  }
 }
