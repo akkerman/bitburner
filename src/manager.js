@@ -5,7 +5,7 @@
 
 /** @param {NS} ns */
 export function main (ns) {
-  const script = 'hwg.js'
+  const script = 'hgw.js'
 
   /** @type {Data} */
   const servers = JSON.parse(ns.read('servers-json.txt'))
@@ -69,7 +69,7 @@ export function main (ns) {
     for (const ht of homeTargets) {
       const { host: target, maxMoney, moneyHacked, minSecurity, hackChance } = ht
 
-      const threads = 5
+      const threads = 2
       const hackThreads = Math.floor(0.5 / moneyHacked)
 
       /** @type {Params} */
