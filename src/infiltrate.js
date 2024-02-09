@@ -42,7 +42,7 @@ let infiltrationStart = 0
 // This will work smoothly, because the script does not use
 // any "ns" functions, it's a pure browser automation tool.
 const wnd = eval('window')
-const doc = wnd.document
+const doc = eval('wnd.document')
 
 // List of all games and an automated solver.
 const infiltrationGames = [
