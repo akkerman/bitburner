@@ -13,11 +13,7 @@ export async function main (ns) {
         const created = await ensureServer(host, ram)
 
         if (created) {
-          ns.exec('crack.js', 'home')
-          await ns.sleep(2000)
           ns.exec('crawler.js', 'home')
-          await ns.sleep(2000)
-          ns.exec('manager.js', 'home')
         }
       }
       ram *= 2
@@ -47,11 +43,11 @@ export async function main (ns) {
     }
 
     if (ns.serverExists(host)) {
-      ns.killall(host)
-      ns.deleteServer(host)
+      ns.upgradePurchasedServer(host, ram)
+    } else {
+      ns.purchaseServer(host, ram)
     }
 
-    ns.purchaseServer(host, ram)
     return true
   }
 }
