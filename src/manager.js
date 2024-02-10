@@ -4,44 +4,50 @@
  */
 
 /** @param {NS} ns */
-export function main (ns) {
+export async function main (ns) {
   const script = 'hgw.js'
 
-  /** @type {Data} */
-  const servers = JSON.parse(ns.read('servers-json.txt'))
-  const hackingLevel = ns.getHackingLevel()
+  ns.exec('crawler.js', 'home')
 
-  const workers = servers.workers.map(server => ({
-    ...server, id: parseInt(server.host.split('-')[1], 10),
-  })).sort((a, b) => a.id - b.id)
+  while (true) {
+    /** @type {Data} */
+    const servers = JSON.parse(ns.read('servers-json.txt'))
+    const hackingLevel = ns.getHackingLevel()
 
-  const targets = servers.targets
-    .filter(s => s.hasRootAccess && s.hackLevel < hackingLevel)
-    .sort((a, b) => {
-      if (b.hackChance === a.hackChance) {
-        return a.portsRequired - b.portsRequired
-      }
-      return b.hackChance - a.hackChance
-    })
+    const workers = servers.workers.map(server => ({
+      ...server, id: parseInt(server.host.split('-')[1], 10),
+    })).sort((a, b) => a.id - b.id)
 
-  let workerTargets = targets
-  let homeTargets = targets
+    const targets = servers.targets
+      .filter(s => s.hasRootAccess && s.hackLevel <= hackingLevel)
+      .sort((a, b) => {
+        if (b.hackChance === a.hackChance) {
+          return a.portsRequired - b.portsRequired
+        }
+        return b.hackChance - a.hackChance
+      })
 
-  // als er veel memory is op HOME dan kunnen we wachten met workers maken
-  if (targets.length > workers.length && workers.length > 5) {
+    let workerTargets = targets
+    let homeTargets = targets
+
+    // als er veel memory is op HOME dan kunnen we wachten met workers maken
+    if (targets.length > workers.length && workers.length > 5) {
     // als het er weinig zijn dan altijd wel dingen execen op de workers!
     // hackchange worden er steeds meer 1 van ...
-    workerTargets = targets.filter(s => s.portsRequired > 1)
-    homeTargets = targets.filter(s => s.portsRequired <= 1)
-  }
+      workerTargets = targets.filter(s => s.portsRequired > 1)
+      homeTargets = targets.filter(s => s.portsRequired <= 1)
+    }
 
-  execHome()
-  execWorkers()
-  execRootedServers()
+    execHome(homeTargets)
+    execWorkers(workerTargets, workers)
+    execRootedServers(targets)
+
+    await ns.sleep(10000)
+  }
 
   // end of main
 
-  function execWorkers () {
+  function execWorkers (workerTargets, workers) {
     const max = Math.min(workerTargets.length, workers.length)
 
     for (let i = 0; i < max; i += 1) {
@@ -61,15 +67,15 @@ export function main (ns) {
         hackChance,
       }
 
-      execOneServer(script, worker, threads, params)
+      execOneServer(script, worker, threads, params, true)
     }
   }
 
-  function execHome () {
+  function execHome (homeTargets) {
     for (const ht of homeTargets) {
       const { host: target, maxMoney, moneyHacked, minSecurity, hackChance } = ht
 
-      const threads = 2
+      const threads = 256
       const hackThreads = Math.floor(0.5 / moneyHacked)
 
       /** @type {Params} */
@@ -86,7 +92,7 @@ export function main (ns) {
     }
   }
 
-  function execRootedServers () {
+  function execRootedServers (targets) {
     for (const rooted of targets) {
       const { host, maxMoney, moneyHacked, minSecurity, hackChance, memory } = rooted
 
@@ -119,13 +125,28 @@ export function main (ns) {
     }
   }
 
-  function execOneServer (script, host, threads, params) {
+  function execOneServer (script, host, threads, params, killOther = false) {
     const sameScript = makeSameScript(script, params.target)
     const processes = ns.ps(host).filter(sameScript)
 
     for (const proc of processes) {
       if (proc.threads !== threads) {
         ns.kill(proc.pid)
+      }
+    }
+
+    if (killOther) {
+      for (const proc of ns.ps(host)) {
+        if (proc.filename !== script) {
+          ns.kill(proc.id)
+          continue
+        }
+
+        const p = JSON.parse(proc.args[0])
+
+        if (p.target !== params.target) {
+          ns.kill(proc.pid)
+        }
       }
     }
 
