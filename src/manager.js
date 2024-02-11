@@ -6,13 +6,23 @@
 /** @param {NS} ns */
 export async function main (ns) {
   const script = 'hgw.js'
-
-  ns.exec('crawler.js', 'home')
+  let dataExported
+  let nextLevel = 0
 
   while (true) {
     /** @type {Data} */
     const servers = JSON.parse(ns.read('servers-json.txt'))
+
     const hackingLevel = ns.getHackingLevel()
+    const dataChanged = !dataExported || dataExported !== servers.exported
+    const nextLevelReached = nextLevel > 0 && nextLevel < hackingLevel
+
+    if (!(dataChanged || nextLevelReached)) {
+      await ns.sleep(10000)
+      continue
+    }
+
+    dataExported = servers.exported
 
     const workers = servers.workers.map(server => ({
       ...server, id: parseInt(server.host.split('-')[1], 10),
@@ -20,29 +30,20 @@ export async function main (ns) {
 
     const targets = servers.targets
       .filter(s => s.hasRootAccess && s.hackLevel <= hackingLevel)
-      .sort((a, b) => {
-        if (b.hackChance === a.hackChance) {
-          return a.portsRequired - b.portsRequired
-        }
-        return b.hackChance - a.hackChance
-      })
+      .sort((a, b) => b.hackLevel - a.hackLevel)
 
-    let workerTargets = targets
-    let homeTargets = targets
-
-    // als er veel memory is op HOME dan kunnen we wachten met workers maken
-    if (targets.length > workers.length && workers.length > 5) {
-    // als het er weinig zijn dan altijd wel dingen execen op de workers!
-    // hackchange worden er steeds meer 1 van ...
-      workerTargets = targets.filter(s => s.portsRequired > 1)
-      homeTargets = targets.filter(s => s.portsRequired <= 1)
-    }
+    const workerTargets = targets
+    const homeTargets = targets
 
     execHome(homeTargets)
     execWorkers(workerTargets, workers)
     execRootedServers(targets)
 
-    await ns.sleep(10000)
+    const nextTarget = servers.targets
+      .sort((a, b) => b.hackLevel - a.hackLevel)
+      .find(s => s.hasRootAccess && s.hackLevel > hackingLevel)
+
+    nextLevel = nextTarget ? nextTarget.hackLevel : 0
   }
 
   // end of main
@@ -75,14 +76,15 @@ export async function main (ns) {
     for (const ht of homeTargets) {
       const { host: target, maxMoney, moneyHacked, minSecurity, hackChance } = ht
 
-      const threads = 256
+      const threads = 64
       const hackThreads = Math.floor(0.5 / moneyHacked)
+      const factor = maxMoney < 5_000_000 ? 1 : 0.75
 
       /** @type {Params} */
       const params = {
         target,
         securityThreshold: 5 + minSecurity,
-        moneyThreshold: 0.75 * maxMoney,
+        moneyThreshold: factor * maxMoney,
         hackThreads: Math.min(hackThreads, threads),
         threads,
         hackChance,
@@ -93,25 +95,27 @@ export async function main (ns) {
   }
 
   function execRootedServers (targets) {
+    const weakenGrow = 'wg.js'
+
     for (const rooted of targets) {
       const { host, maxMoney, moneyHacked, minSecurity, hackChance, memory } = rooted
 
       if (memory === 0) continue
 
       const hackThreads = Math.floor(0.5 / moneyHacked)
-      const threads = Math.floor(memory / ns.getScriptRam(script))
+      const threads = Math.floor(memory / ns.getScriptRam(weakenGrow))
 
       /** @type {Params} */
       const params = {
         target: host,
         securityThreshold: 5 + minSecurity,
-        moneyThreshold: 0.75 * maxMoney,
+        moneyThreshold: maxMoney,
         hackThreads: Math.min(hackThreads, threads),
         threads,
         hackChance,
       }
 
-      execOneServer(script, host, threads, params)
+      execOneServer(weakenGrow, host, threads, params)
     }
   }
 
@@ -131,6 +135,7 @@ export async function main (ns) {
 
     for (const proc of processes) {
       if (proc.threads !== threads) {
+        ns.print(`WARN killing script on ${host} because different threads wanted ${threads} != actual ${proc.threads}`)
         ns.kill(proc.pid)
       }
     }
@@ -138,6 +143,7 @@ export async function main (ns) {
     if (killOther) {
       for (const proc of ns.ps(host)) {
         if (proc.filename !== script) {
+          ns.print(`WARN killing script on ${host} because different name wanted ${script} != actual ${proc.filename}`)
           ns.kill(proc.id)
           continue
         }
@@ -145,6 +151,7 @@ export async function main (ns) {
         const p = JSON.parse(proc.args[0])
 
         if (p.target !== params.target) {
+          ns.print(`WARN killing script on ${host} because different target, wanted ${params.target} != actual ${p.target}`)
           ns.kill(proc.pid)
         }
       }
@@ -152,7 +159,6 @@ export async function main (ns) {
 
     if (ns.ps(host).find(sameScript)) return
 
-    ns.print(`exec ${script} on ${host} with ${threads} threads and parameters: ${JSON.stringify(params)}`)
     ns.scp(script, host)
     ns.exec(script, host, threads, JSON.stringify(params))
   }

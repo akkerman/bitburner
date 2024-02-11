@@ -5,16 +5,22 @@ export async function main (ns) {
     const maxServers = ns.getPurchasedServerLimit()
     const maxRam = ns.getPurchasedServerMaxRam()
 
-    let ram = ns.serverExists('worker-1') ? ns.getServerMaxRam('worker-1') * 2 : 8
+    const numServers = ns.getPurchasedServers().length
+
+    let ram = 8
+
+    if (numServers > 0 && numServers < ns.getPurchasedServerLimit()) {
+      ram = Math.min(ns.getServerMaxRam('worker-1'), 128)
+    }
+    if (numServers === ns.getPurchasedServers()) {
+      ram = ns.getServerMaxRam('worker-1')
+    }
 
     while (ram <= maxRam) {
       for (let serverId = 1; serverId <= maxServers; serverId += 1) {
         const host = 'worker-' + serverId
-        const created = await ensureServer(host, ram)
 
-        if (created) {
-          ns.exec('crawler.js', 'home')
-        }
+        await ensureServer(host, ram)
       }
       ram *= 2
     }
@@ -38,7 +44,10 @@ export async function main (ns) {
       return false
     }
 
-    while (ns.getServerMoneyAvailable('home') < ns.getPurchasedServerCost(ram)) {
+    const purSerCost = ns.getPurchasedServerCost(ram)
+
+    while (ns.getServerMoneyAvailable('home') < purSerCost) {
+      ns.print(`INFO Waiting for $${ns.formatNumber(purSerCost)} to upgrade ${host} to ${ns.formatRam(ram)}`)
       await ns.sleep(10000)
     }
 
