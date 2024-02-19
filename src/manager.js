@@ -14,6 +14,7 @@ export async function main (ns) {
     const servers = JSON.parse(ns.read('servers-json.txt'))
 
     const hackingLevel = ns.getHackingLevel()
+    const homeRam = ns.getServerMaxRam('home')
     const dataChanged = !dataExported || dataExported !== servers.exported
     const nextLevelReached = nextLevel > 0 && nextLevel < hackingLevel
 
@@ -30,15 +31,53 @@ export async function main (ns) {
 
     const targets = servers.targets
       .filter(s => s.hasRootAccess && s.hackLevel <= hackingLevel)
-      .sort((a, b) => b.hackLevel - a.hackLevel)
+      .sort((a, b) => {
+        const diff = a.hackLevel - b.hackLevel
 
-    const workerTargets = targets
-    const homeTargets = targets
+        if (diff) return diff
+        return a.host < b.host ? -1 : 1
+      })
 
-    execHome(homeTargets)
-    execWorkers(workerTargets, workers)
-    execRootedServers(targets)
+    let homeTargets = targets
+    let workerTargets = targets
 
+    if (workers.length === 25 && targets.length > 25) {
+      homeTargets = targets.slice(0, targets.length - 25)
+      workerTargets = targets.slice(targets.length - 25)
+    }
+
+    const scriptsRam = ns.getScriptRam('manager.js') - ns.getScriptRam('crawler.js') - ns.getScriptRam('crack.js') - ns.getScriptRam('deploy-workers.js')
+    const homeAvailableHgw = homeRam - scriptsRam
+
+    if (hackingLevel <= 100) {
+      const { host, minSecurity, maxMoney } = homeTargets.find(s => s.host === 'n00dles')
+      /** @type {Params} */
+      const params = {
+        target: host,
+        securityThreshold: 5 + minSecurity,
+        moneyThreshold: maxMoney,
+      }
+
+      const threads = Math.floor(homeAvailableHgw / ns.getScriptRam(script))
+
+      params.hackThreads = threads
+      params.threads = threads
+
+      execOneServer(script, 'home', threads, params, false)
+
+      for (const server of homeTargets) {
+        const threads = Math.floor(server.memory / ns.getScriptRam(script))
+
+        params.hackThreads = threads
+        params.threads = threads
+
+        execOneServer(script, server.host, threads, params, true)
+      }
+    } else {
+      execHome(homeTargets)
+      execWorkers(workerTargets, workers)
+      weakenGrowRootedServers(targets)
+    }
     const nextTarget = servers.targets
       .sort((a, b) => b.hackLevel - a.hackLevel)
       .find(s => s.hasRootAccess && s.hackLevel > hackingLevel)
@@ -76,7 +115,8 @@ export async function main (ns) {
     for (const ht of homeTargets) {
       const { host: target, maxMoney, moneyHacked, minSecurity, hackChance } = ht
 
-      const threads = 64
+      // minimum could be 8, at start of bitnode this will run one hgw
+      const threads = 8
       const hackThreads = Math.floor(0.5 / moneyHacked)
       const factor = maxMoney < 5_000_000 ? 1 : 0.75
 
@@ -94,7 +134,7 @@ export async function main (ns) {
     }
   }
 
-  function execRootedServers (targets) {
+  function weakenGrowRootedServers (targets) {
     const weakenGrow = 'wg.js'
 
     for (const rooted of targets) {
@@ -115,7 +155,7 @@ export async function main (ns) {
         hackChance,
       }
 
-      execOneServer(weakenGrow, host, threads, params)
+      execOneServer(weakenGrow, host, threads, params, true)
     }
   }
 
@@ -144,7 +184,7 @@ export async function main (ns) {
       for (const proc of ns.ps(host)) {
         if (proc.filename !== script) {
           ns.print(`WARN killing script on ${host} because different name wanted ${script} != actual ${proc.filename}`)
-          ns.kill(proc.id)
+          ns.kill(proc.pid)
           continue
         }
 
