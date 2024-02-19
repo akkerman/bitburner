@@ -15,7 +15,16 @@ export async function main (ns) {
     oldData = JSON.parse(ns.read(filename))
   }
 
+  let open = -1
+
   while (true !== false) { // trick compiler in thinking the function returns something
+    const newOpen = portOpen()
+
+    if (open < newOpen) {
+      open = newOpen
+      scanner(ns, crack)
+    }
+
     const newData = {
       exported: 0,
       /** @type {Server[]} */
@@ -91,6 +100,36 @@ export async function main (ns) {
     }
 
     return false
+  }
+
+  /** @param {string} host */
+  function crack (host) {
+    if (host === 'home') { return }
+    if (ns.hasRootAccess(host)) return
+
+    if (ns.fileExists('BruteSSH.exe')) { ns.brutessh(host) }
+    if (ns.fileExists('FTPCrack.exe')) { ns.ftpcrack(host) }
+    if (ns.fileExists('relaySMTP.exe')) { ns.relaysmtp(host) }
+    if (ns.fileExists('HTTPWorm.exe')) { ns.httpworm(host) }
+    if (ns.fileExists('SQLInject.exe')) { ns.sqlinject(host) }
+
+    if (ns.getServerNumPortsRequired(host) <= open) {
+      ns.nuke(host)
+      ns.print(`Gained root access on ${host}`)
+      ns.tprint(`Gained root access on ${host}`)
+    }
+  }
+
+  function portOpen () {
+    let open = 0
+
+    if (ns.fileExists('BruteSSH.exe')) { open += 1 }
+    if (ns.fileExists('FTPCrack.exe')) { open += 1 }
+    if (ns.fileExists('relaySMTP.exe')) { open += 1 }
+    if (ns.fileExists('HTTPWorm.exe')) { open += 1 }
+    if (ns.fileExists('SQLInject.exe')) { open += 1 }
+
+    return open
   }
 
   return data
