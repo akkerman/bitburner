@@ -46,11 +46,11 @@ export async function main (ns) {
       workerTargets = targets.slice(targets.length - 25)
     }
 
-    const scriptsRam = ns.getScriptRam('manager.js') - ns.getScriptRam('crawler.js') - ns.getScriptRam('crack.js') - ns.getScriptRam('deploy-workers.js')
-    const homeAvailableHgw = homeRam - scriptsRam
+    const scriptsRam = ns.getScriptRam('manager.js') + ns.getScriptRam('crawler.js') + ns.getScriptRam('deploy-workers.js')
+    const homeAvailableHgw = Math.max(0, homeRam - scriptsRam)
 
     if (hackingLevel <= 100) {
-      const { host, minSecurity, maxMoney } = homeTargets.find(s => s.host === 'n00dles')
+      const { host, minSecurity, maxMoney , moneyHacked } = homeTargets.find(s => s.host === 'n00dles')
       /** @type {Params} */
       const params = {
         target: host,
@@ -58,12 +58,14 @@ export async function main (ns) {
         moneyThreshold: maxMoney,
       }
 
-      const threads = Math.floor(homeAvailableHgw / ns.getScriptRam(script))
+      if (homeRam <= 256) {
+        const threads = Math.floor(homeAvailableHgw / ns.getScriptRam(script))
+        const hackThreads = Math.floor(0.5 / moneyHacked)
 
-      params.hackThreads = threads
-      params.threads = threads
-
-      execOneServer(script, 'home', threads, params, false)
+        params.hackThreads = Math.min(hackThreads, threads)
+        params.threads = threads
+        execOneServer(script, 'home', threads, params, false)
+      }
 
       for (const server of homeTargets) {
         const threads = Math.floor(server.memory / ns.getScriptRam(script))
